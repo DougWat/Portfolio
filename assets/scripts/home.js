@@ -1,10 +1,10 @@
 function HomeHero(){
   const section = $("#HomeHero");
-  const sectionRect = $(section)[0].getBoundingClientRect();
   const name = $("#HomeHeroName");
   
   let allow = true;
-
+  
+  let sectionRect = $(section)[0].getBoundingClientRect();
   let sectionWidth;
   let sectionHeight;
   let sectionWidthHalf;
@@ -26,6 +26,7 @@ function HomeHero(){
   }
 
   function SetSectionDimensions(){
+    sectionRect = $(section)[0].getBoundingClientRect();
     sectionWidth = sectionRect.width;
     sectionHeight = sectionRect.height;
     sectionWidthHalf = sectionWidth/2;
