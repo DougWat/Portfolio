@@ -29,7 +29,7 @@
             opacity: 0;
         }
         .home-hero-name-solid{
-            opacity: calc(1 - (.1 * var(--n)));
+            opacity: calc(1 - (.2 * var(--n)));
         }
     }
 }
@@ -51,7 +51,7 @@
     }
     path{
         fill:none;
-        stroke-width: 2px;
+        stroke-width: 1px;
         stroke: white;
     }
 }
@@ -69,6 +69,7 @@
     rotate(calc(0deg + (var(--n) * var(--x-div) * (5deg * var(--rot-factor)))));
     transition: transform calc(50ms + (100ms * var(--n))) ease-out, opacity 1000ms;
     will-change: transform;
+    filter: drop-shadow(3px 3px 1px rgba(110,154,123,.5));
     svg{
         width: 100%;
         height: 100%;
@@ -78,7 +79,8 @@
     }
     path{
         fill:var(--color);
-        stroke:rgba(0, 0, 0, .5);
+        fill:transparent;
+        stroke:var(--color);
         stroke-width: 1px;
     }
 }
