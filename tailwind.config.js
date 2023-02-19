@@ -9,8 +9,8 @@ module.exports = {
   ],
   theme: {
     screens: {
-      xl: {'max':'1279px'},
-      lg: {'max':'1023px'},
+      xl: {'max':'1240px'},
+      lg: {'max':'1024px'},
       md: {'max':'767px'},
       sm: {'max':'639px'},
       xs: {'max': '500px'}
@@ -18,21 +18,20 @@ module.exports = {
     extend: {
         fontFamily:{
           body: ["DM Sans", "sans-serif"],
-          header: ["DM Sans", "sans-serif"],
+          header: ["Quicksand", "sans-serif"],
         },
         colors:{
-          green:'#DFFF00',
-          blue:"#20F1FA",
-          'dark-blue':"#006792",
-          orange:"#FF8D3A"
+          primary:"#EE8C1C",
+          secondary:"#14213D"
         },
         backgroundColor:{
-          dark:'#0B0B0B',
-          gray:'#1C1C1C'
+          dark:'#1F2126',
+          gray:'#847979',
+          light:"FFFBFF"
         },
         textColor:{
-          light:'#FFFFFF',
-          dark:'#000'
+          light:'#FFFBFF',
+          dark:'#0B0A07'
         }
     },
   },

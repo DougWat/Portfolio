@@ -1,3 +1,84 @@
-.heyy{
-    background-color:green;
+#HomeHero{
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @apply bg-dark;
+}
+#HomeHeroContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#HomeHeroName{
+    --scale-factor: 0;
+    --rot-factor: 0;
+    --trans-factor: 0;
+    position: relative;
+    max-width: 700px;
+    width: 100%;
+    height: 200px;
+    transition: --scale-factor 1000ms;
+    &.change{
+        --scale-factor: .4;
+        --rot-factor: .1;
+        --trans-factor: .1;
+        #HomeHeroNameOutline{
+            opacity: 0;
+        }
+        .home-hero-name-solid{
+            opacity: calc(1 - (.1 * var(--n)));
+        }
+    }
+}
+#HomeHeroNameOutline{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    opacity: 1;
+    transition: opacity 1000ms;
+    svg{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    path{
+        fill:none;
+        stroke-width: 2px;
+        stroke: white;
+    }
+}
+.home-hero-name-solid{
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transform: 
+    scale3d(calc(1 - ((0.05 * var(--n)) * var(--scale-factor))),calc(1 - ((0.05 * var(--n)) * var(--scale-factor))),1)
+    translate(calc((var(--n) * var(--x-div) * (50px * var(--trans-factor)))),calc((var(--n) * var(--y-div) * (50px * var(--trans-factor)))))
+    rotate(calc(0deg + (var(--n) * var(--x-div) * (5deg * var(--rot-factor)))));
+    transition: transform calc(50ms + (100ms * var(--n))) ease-out, opacity 1000ms;
+    will-change: transform;
+    svg{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    path{
+        fill:var(--color);
+        stroke:rgba(0, 0, 0, .5);
+        stroke-width: 1px;
+    }
 }

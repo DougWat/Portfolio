@@ -1,0 +1,15 @@
+.path-trace{
+    opacity: 0;
+    path{
+        --offset:1000;
+        stroke-dasharray: var(--offset);
+        stroke-dashoffset: var(--offset);
+        &.start{
+            stroke-dashoffset:0;
+            transition: stroke-dashoffset 700ms ease-out;
+        }
+    } 
+    &.start{
+        opacity: 1;
+    }
+}

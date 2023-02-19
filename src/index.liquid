@@ -3,6 +3,17 @@ layout: layout.liquid
 title: Home Page
 ---
 
-<section class="mb-12">
-  One more test
+<section id="HomeHero" class="section-padding">
+  <div id="HomeHeroContainer" class="text-light container">
+  <div id="HomeHeroName"  style="--x-div:0; --y-div:0;">
+    {% include 'home/name-solid', n:4 color:"#B5179E"; %}
+    {% include 'home/name-solid', n:3 color:"#560BAD"%}
+    {% include 'home/name-solid', n:2 color:"#3A0CA3"%}
+    {% include 'home/name-solid', n:1 color:"#4361EE"%}
+    {% include 'home/name-solid', n:0 color:"#4CC9F0"%}
+    {% include 'home/name-outline' %}
+  </div>
+  </div>
 </section>
+
+  <script src="{{'/assets/scripts/home.js' | url}}"></script>
