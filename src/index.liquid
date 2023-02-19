@@ -4,8 +4,11 @@ title: Home Page
 ---
 
 <section id="HomeHero" class="section-padding">
+  <div id="HomeHeroBackground" class="background-spread" style="background-image:url({{'/assets/images/home/hero-bg.jpg' | url}})">
+    <img class="image-cover" src="{{'/assets/images/home/hero-bg.jpg' | url}}"/>
+  </div>
   <div id="HomeHeroContainer" class="text-light container">
-  <div id="HomeHeroName"  style="--x-div:0; --y-div:0;">
+  <div id="HomeHeroName"  style="--y-div:0;">
   {% include 'home/name-solid', n:6 color:"#B5179E" %}
   {% include 'home/name-solid', n:5 color:"#B5179E" %}
     {% include 'home/name-solid', n:4 color:"#B5179E" %}

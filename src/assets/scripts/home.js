@@ -9,6 +9,9 @@ function HomeHero(){
   let sectionHeight;
   let sectionWidthHalf;
   let sectionHeightHalf;
+
+  let xCosInterval = 0;
+
   SetSectionDimensions();
 
   $(section)[0].onmousemove = (e)=>{
@@ -16,13 +19,13 @@ function HomeHero(){
     const x1 = e.clientX - sectionRect.left;
     const y1 = e.clientY - sectionRect.top;
 
-    const x = Math.round((x1 - sectionWidthHalf)/sectionWidthHalf * 100) / 100;
-    const y = Math.round((y1 - sectionHeightHalf)/sectionHeightHalf * 100) / 100;
+    const x = (x1 - sectionWidthHalf)/sectionWidthHalf;
+    const y = (y1 - sectionHeightHalf)/sectionHeightHalf;
 
-    $(name)[0].style.setProperty('--x-div', x);
+    $(name)[0].style.setProperty('--x-div-part', x);
     $(name)[0].style.setProperty('--y-div', y);
     allow = false;
-    setTimeout(()=>{allow=true;},10)
+    setTimeout(()=>{allow=true;},60);
   }
 
   function SetSectionDimensions(){
@@ -39,6 +42,12 @@ function HomeHero(){
   },2000);
 
   window.addEventListener("resize", SetSectionDimensions);
+
+  setInterval(()=>{
+    const xC = Math.cos(xCosInterval);
+    $(name)[0].style.setProperty('--x-cos', xC);
+    xCosInterval += .05;
+  },30);
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
