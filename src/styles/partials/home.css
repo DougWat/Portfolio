@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    @apply bg-dark;
+    @apply bg-light;
 }
 #HomeHeroContainer{
     display: flex;
@@ -21,8 +21,9 @@
     width: 100%;
     height: 200px;
     transition: --scale-factor 1000ms;
+    filter: brightness(0.6);
     &.change{
-        --scale-factor: calc(.2 + (max(var(--x-div), -1*var(--x-div)) * .35) + (max(var(--y-div), -1*var(--y-div)) * .35));
+        --scale-factor: calc(.2 + (max(var(--x-div), -1*var(--x-div)) * .20) + (max(var(--y-div), -1*var(--y-div)) * .20));
         --rot-factor: .1;
         --trans-factor: .1;
         #HomeHeroNameOutline{

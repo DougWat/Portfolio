@@ -27,7 +27,7 @@ module.exports = {
         backgroundColor:{
           dark:'#1F2126',
           gray:'#847979',
-          light:"FFFBFF"
+          light:"f7f7f7"
         },
         textColor:{
           light:'#FFFBFF',
