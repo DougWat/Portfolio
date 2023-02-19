@@ -39,7 +39,7 @@ function HomeHero(){
   pathTrace.TriggerTarget($(section).find('.path-trace'));
   setTimeout(()=>{
     $(name).addClass('change');
-  },2000);
+  },1200);
 
   window.addEventListener("resize", SetSectionDimensions);
 
