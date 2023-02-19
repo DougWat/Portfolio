@@ -52,22 +52,22 @@
     }
     path{
         fill:none;
-        stroke-width: 1px;
+        stroke-width: 1.5px;
         stroke: white;
     }
 }
 @keyframes NamePulse{
     0%{
-        stroke-width: 1px;
+        stroke-width: 1.5px;
     }
     5%{
-        stroke-width: 2px;
+        stroke-width: 2.5px;
     }
     10%{
-        stroke-width: 1px;
+        stroke-width: 1.5px;
     }
     100%{
-        stroke-width: 1px;
+        stroke-width: 1.5px;
     }
 }
 .home-hero-name-solid{
@@ -84,7 +84,7 @@
     rotate(calc(0deg + (var(--n) * var(--x-div) * (5deg * var(--rot-factor)))));
     transition: transform calc(50ms + (100ms * var(--n))) ease-out, opacity 1000ms;
     will-change: transform;
-    filter: drop-shadow(3px 3px 1px rgba(41, 166, 188, 0.5));
+    filter: drop-shadow(3px 3px 1px rgba(33, 224, 228, 0.785));
     svg{
         width: 100%;
         height: 100%;
