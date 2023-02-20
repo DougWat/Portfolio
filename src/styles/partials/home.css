@@ -20,13 +20,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #121212;
+    background-color: #231c2f;
 }
 #HomeHeroContainer{
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    flex-direction: column;
+    gap:42px;
+    position: relative;
 }
 #HomeHeroName{
     --scale-factor: 0;
@@ -74,10 +77,12 @@
     }
 }
 #HomeHeroBackground{
-    opacity: .1;
+    opacity: .2;
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
+    pointer-events: none;
+    mix-blend-mode: hard-light;
 }
 
 .home-hero-name-solid{

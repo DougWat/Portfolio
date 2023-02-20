@@ -18,7 +18,7 @@ module.exports = {
     extend: {
         fontFamily:{
           body: ["DM Sans", "sans-serif"],
-          header: ["Quicksand", "sans-serif"],
+          header: ["Recoleta", "sans-serif"],
         },
         colors:{
           primary:"#EE8C1C",
