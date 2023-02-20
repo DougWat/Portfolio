@@ -75,6 +75,9 @@
 }
 #HomeHeroBackground{
     opacity: .1;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 
 .home-hero-name-solid{
