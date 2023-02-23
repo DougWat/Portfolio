@@ -34,10 +34,22 @@
         src:url("/Portfolio/assets/fonts/SansSerifFLF-Regular.otf");
         font-weight:400;
       }
+      @font-face{
+        font-family: SansSerifFLF;
+        src:url("/Portfolio/assets/fonts/SansSerifFLF-Medium.otf");
+        font-weight:500;
+      }
+      @font-face{
+        font-family: SansSerifFLF;
+        src:url("/Portfolio/assets/fonts/SansSerifFLF-Semibold.otf");
+        font-weight:600;
+      }
     </style>  
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">    <link rel="stylesheet" href="/Portfolio/assets/styles/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/Portfolio/assets/scripts/pathtrace.js"></script>
+    <script src="/Portfolio/assets/scripts/ScrollTrigger.min.js"></script>
+    <script src="/Portfolio/assets/scripts/ScrollTriggerSetup.js"></script>
   </head>
   <body>
     <div class="">
@@ -48,10 +60,10 @@
 <section id="HomeHero" class="section-padding">
   <div id="HomeHeroBackground" class="background-spread" style="background-image:url(/Portfolio/assets/images/home/bg.png)"></div>
   <div id="HomeHeroContainer" class=" container">
-    <div id="HomeHeroContent">
-      <h1 class="mb-4">Hi, I'm Doug!</h1>
+    <div id="HomeHeroContent" data-slideinleft="true">
+      <h1 class="mb-4">Hey, I'm <span class="text-primary">Doug.</span></h1>
       <h3>A Front-end Web Developer</h3>
-      <span class="line"></span>
+      <span class="line text-primary"></span>
       <p>Dunno if there should be, like, a sentence or two here about me. Do people really care? I certainly wouldn’t</p>
     </div>
     <div id="HomeHeroLogo"  style="--y-div:0; --x-cos:0">
@@ -70,22 +82,22 @@
         <path  d="M3.5,3.5H42.81A48.45,48.45,0,0,1,76.48,17.11l.18.18A67,67,0,0,1,76.45,112h0a46,46,0,0,1-32.53,13.47H3.5v-102a1.62,1.62,0,0,1,1.62-1.62h8.06a13.32,13.32,0,0,1,4.25.69L78.12,42.7a.52.52,0,0,1,0,1L16.87,64.14a.53.53,0,0,0,0,1L78.11,85.41a.53.53,0,0,1,0,1L15.36,107.17"/>
     </svg>
 </div>
-      <div class="home-hero-logo-solid" style="--n:3; --color:#642ba7">
+      <div class="home-hero-logo-solid" style="--n:3; --color:#04ba9e">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 99.62 128.92">
         <path  d="M3.5,3.5H42.81A48.45,48.45,0,0,1,76.48,17.11l.18.18A67,67,0,0,1,76.45,112h0a46,46,0,0,1-32.53,13.47H3.5v-102a1.62,1.62,0,0,1,1.62-1.62h8.06a13.32,13.32,0,0,1,4.25.69L78.12,42.7a.52.52,0,0,1,0,1L16.87,64.14a.53.53,0,0,0,0,1L78.11,85.41a.53.53,0,0,1,0,1L15.36,107.17"/>
     </svg>
 </div>
-      <div class="home-hero-logo-solid" style="--n:2; --color:#52319b">
+      <div class="home-hero-logo-solid" style="--n:2; --color:#06d1b2">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 99.62 128.92">
         <path  d="M3.5,3.5H42.81A48.45,48.45,0,0,1,76.48,17.11l.18.18A67,67,0,0,1,76.45,112h0a46,46,0,0,1-32.53,13.47H3.5v-102a1.62,1.62,0,0,1,1.62-1.62h8.06a13.32,13.32,0,0,1,4.25.69L78.12,42.7a.52.52,0,0,1,0,1L16.87,64.14a.53.53,0,0,0,0,1L78.11,85.41a.53.53,0,0,1,0,1L15.36,107.17"/>
     </svg>
 </div>
-      <div class="home-hero-logo-solid" style="--n:1; --color:#6c82e9">
+      <div class="home-hero-logo-solid" style="--n:1; --color:#07e6c4">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 99.62 128.92">
         <path  d="M3.5,3.5H42.81A48.45,48.45,0,0,1,76.48,17.11l.18.18A67,67,0,0,1,76.45,112h0a46,46,0,0,1-32.53,13.47H3.5v-102a1.62,1.62,0,0,1,1.62-1.62h8.06a13.32,13.32,0,0,1,4.25.69L78.12,42.7a.52.52,0,0,1,0,1L16.87,64.14a.53.53,0,0,0,0,1L78.11,85.41a.53.53,0,0,1,0,1L15.36,107.17"/>
     </svg>
 </div>
-      <div class="home-hero-logo-solid" style="--n:0; --color:#6fc9e5">
+      <div class="home-hero-logo-solid" style="--n:0; --color:#08FDD8">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 99.62 128.92">
         <path  d="M3.5,3.5H42.81A48.45,48.45,0,0,1,76.48,17.11l.18.18A67,67,0,0,1,76.45,112h0a46,46,0,0,1-32.53,13.47H3.5v-102a1.62,1.62,0,0,1,1.62-1.62h8.06a13.32,13.32,0,0,1,4.25.69L78.12,42.7a.52.52,0,0,1,0,1L16.87,64.14a.53.53,0,0,0,0,1L78.11,85.41a.53.53,0,0,1,0,1L15.36,107.17"/>
     </svg>
@@ -105,8 +117,15 @@
     </div>
   </div>
 </section>
+<section id="HomeAbout" class="section-padding bg-dark">
+  <div class="container">
+      <h1 class="mb-4" data-slideinleft="true">Hey, I'm <span class="text-primary">Doug.</span></h1>
 
-  <script src="/Portfolio/assets/scripts/home.js"></script>
+  </div>
+</section>
+<div style="height:1000px"></div>
+
+<script src="/Portfolio/assets/scripts/home.js"></script>
 
     <div class="">
 
