@@ -1,15 +1,28 @@
 @keyframes NamePulse{
     0%{
-        stroke-width: 1.5px;
+        stroke-width: var(--stroke-width);
+        text-stroke-width:var(--stroke-width);
+        -webkit-text-stroke-width:var(--stroke-width);
     }
     5%{
-        stroke-width: 2.5px;
+        stroke-width: calc(var(--stroke-width) + 1.5px);
+        text-stroke-width:calc(var(--stroke-width) + 1.5px);
+        -webkit-text-stroke-width:calc(var(--stroke-width) + 1.5px);
     }
     10%{
-        stroke-width: 1.5px;
+        stroke-width: calc(var(--stroke-width) + .5px);
+        text-stroke-width:calc(var(--stroke-width) + .5px);
+        -webkit-text-stroke-width:calc(var(--stroke-width) + .5px);
+    }
+    50%{
+        stroke-width: var(--stroke-width);
+        text-stroke-width:var(--stroke-width);
+        -webkit-text-stroke-width:var(--stroke-width);
     }
     100%{
-        stroke-width: 1.5px;
+        stroke-width: var(--stroke-width);
+        text-stroke-width:var(--stroke-width);
+        -webkit-text-stroke-width:var(--stroke-width);
     }
 }
 
@@ -20,41 +33,53 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #231c2f;
+    background-color: #f5f5f5;
 }
 #HomeHeroContainer{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    flex-direction: column;
     gap:42px;
     position: relative;
 }
-#HomeHeroName{
+#HomeHeroContent{
+    max-width: 500px;
+    h1{
+        font-size: 5rem;
+    }
+    .line{
+        display: block;
+        width:100%;
+        height: 1px;
+        background-color: currentColor;
+        margin: 34px 0;
+    }
+}
+#HomeHeroLogo{
     --scale-factor: 0;
     --rot-factor: 0;
     --trans-factor: 0;
     --x-div: calc(var(--x-div-part) + (var(--x-cos)/4));
+    --stroke-width:2px;
     position: relative;
-    max-width: 700px;
+    max-width: 300px;
     width: 100%;
-    height: 200px;
+    height: 300px;
     transition: --scale-factor 1000ms;
     filter:drop-shadow(0px 0px 120px rgb(115, 0, 255));
     &.change{
         --scale-factor: calc(.1 + (max(var(--x-div), -1*var(--x-div)) * .10) + (max(var(--y-div), -1*var(--y-div)) * .10));
         --rot-factor: .1;
         --trans-factor: .05;
-        #HomeHeroNameOutline{
+        #HomeHeroLogoOutline{
             opacity: 0;
         }
-        .home-hero-name-solid{
+        .home-hero-logo-solid{
             opacity: calc(1 - (.15 * var(--n)));
         }
     }
 }
-#HomeHeroNameOutline{
+#HomeHeroLogoOutline{
     width: 100%;
     height: 100%;
     display: flex;
@@ -74,18 +99,19 @@
         fill:none;
         stroke-width: 1.5px;
         stroke: #4CC9F0;
+        stroke-linecap: round;
     }
 }
 #HomeHeroBackground{
     opacity: .2;
     background-attachment: fixed;
     background-position: center;
-    background-size: cover;
+    //background-size: cover;
     pointer-events: none;
-    mix-blend-mode: hard-light;
+    mix-blend-mode: color-burn;
 }
 
-.home-hero-name-solid{
+.home-hero-logo-solid{
     opacity: 0;
     width: 100%;
     height: 100%;
@@ -99,7 +125,7 @@
     rotate(calc(0deg + (var(--n) * var(--x-div) * (5deg * var(--rot-factor)))));
     transition: transform calc(50ms + (100ms * var(--n))) ease-out, opacity 1000ms;
     will-change: transform;
-    filter: drop-shadow(3px 3px 1px rgba(33, 224, 228, 0.785));
+    filter: drop-shadow(2px 2px 1px rgba(33, 224, 228, 0.6)) drop-shadow(-2px -2px 1px rgba(185, 60, 167,0.3));
     svg{
         width: 100%;
         height: 100%;
@@ -108,12 +134,97 @@
         align-items: center;
     }
     path{
-        fill:var(--color);
-        fill:transparent;
+        fill:none;
         stroke:var(--color);
-        stroke-width: 1px;
-        animation: NamePulse 3s infinite;
+        stroke-width: 5px;
+        animation: NamePulse 6s infinite;
         animation-delay: calc(var(--n) * 50ms);
         transition: stroke-width;
+        stroke-linecap: round;
+    }
+    h1{
+        font-family: "Recoleta";
+        font-size: 10rem;
+        font-weight: 800;
+        color:transparent;
+        -webkit-text-stroke: 2px var(--color);
+        text-stroke: 2px var(--color);
+        animation: NamePulse 12s infinite;
+        animation-delay: calc(var(--n) * 50ms);
+    }
+}
+
+#HomeHeroArrowButton{
+    --padding: 12px;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    bottom:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:var(--padding);
+    @apply text-dark;
+    .circle{
+        width: 100%;
+        height: 100%;
+        border: 1px solid;
+        border-color: currentColor;
+        border-radius: 100%;
+        position: absolute;
+        transition: transform 300ms;
+    }
+    &:hover{
+        .circle{
+            transform:scale(1.1);
+        }
+        #HomeHeroArrowWrapper{
+            transform: translateY(4px) scale(1.3,1);
+            .arrow-line{
+                height: 140%;
+            }
+        }
+    }
+    &:active{
+        .circle{
+            transform:scale(.9);
+        } 
+        #HomeHeroArrowWrapper{
+            transform: translateY(7px) scale(.7,1);
+            .arrow-line{
+                height: 90%;
+            }
+        }
+    }
+}
+#HomeHeroArrowWrapper{
+    --width:10px;
+    height: 100%;
+    width: var(--width);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    transition: transform 300ms;
+    .arrow-line{
+        height: 100%;
+        width: 1px;
+        flex-shrink: 0;
+        background-color: currentColor;
+        transition: height 300ms;
+    }
+    .arrow-end{
+        position: absolute;
+        bottom:1px;
+        transform: rotate(45deg);
+        flex-shrink: 0;
+        width: var(--width);
+        height: var(--width);
+        border-color: currentColor;
+        border-bottom: 1px solid;
+        border-right: 1px solid;
     }
 }

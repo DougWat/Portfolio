@@ -1,6 +1,6 @@
 function HomeHero(){
   const section = $("#HomeHero");
-  const name = $("#HomeHeroName");
+  const name = $("#HomeHeroLogo");
   
   let allow = true;
   
@@ -39,15 +39,15 @@ function HomeHero(){
   pathTrace.TriggerTarget($(section).find('.path-trace'));
   setTimeout(()=>{
     $(name).addClass('change');
-  },1200);
+  },2200);
 
   window.addEventListener("resize", SetSectionDimensions);
 
-  setInterval(()=>{
-    const xC = Math.cos(xCosInterval);
-    $(name)[0].style.setProperty('--x-cos', xC);
-    xCosInterval += .05;
-  },30);
+  // setInterval(()=>{
+  //   const xC = Math.cos(xCosInterval);
+  //   $(name)[0].style.setProperty('--x-cos', xC);
+  //   xCosInterval += .05;
+  // },30);
 }
 
 document.addEventListener('DOMContentLoaded',()=>{

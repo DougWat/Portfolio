@@ -4,19 +4,31 @@ title: Home Page
 ---
 
 <section id="HomeHero" class="section-padding">
-  <div id="HomeHeroBackground" class="background-spread" style="background-image:url({{'/assets/images/home/hero-bg.jpg' | url}})"></div>
-  <div id="HomeHeroContainer" class="text-light container">
-    <div id="HomeHeroName"  style="--y-div:0;">
-      {% include 'home/name-solid', n:6 color:"#B5179E" %}
-      {% include 'home/name-solid', n:5 color:"#B5179E" %}
-      {% include 'home/name-solid', n:4 color:"#B5179E" %}
-      {% include 'home/name-solid', n:3 color:"#560BAD"%}
-      {% include 'home/name-solid', n:2 color:"#3A0CA3"%}
-      {% include 'home/name-solid', n:1 color:"#4361EE"%}
-      {% include 'home/name-solid', n:0 color:"#4CC9F0"%}
+  <div id="HomeHeroBackground" class="background-spread" style="background-image:url({{'/assets/images/home/bg.png' | url}})"></div>
+  <div id="HomeHeroContainer" class=" container">
+    <div id="HomeHeroContent">
+      <h1 class="mb-4">Hi, I'm Doug!</h1>
+      <h3>A Front-end Web Developer</h3>
+      <span class="line"></span>
+      <p>Dunno if there should be, like, a sentence or two here about me. Do people really care? I certainly wouldn’t</p>
+    </div>
+    <div id="HomeHeroLogo"  style="--y-div:0; --x-cos:0">
+      {% include 'home/name-solid', n:6 color:"#b93ca7" %}
+      {% include 'home/name-solid', n:5 color:"#af339d" %}
+      {% include 'home/name-solid', n:4 color:"#af339d" %}
+      {% include 'home/name-solid', n:3 color:"#642ba7"%}
+      {% include 'home/name-solid', n:2 color:"#52319b"%}
+      {% include 'home/name-solid', n:1 color:"#6c82e9"%}
+      {% include 'home/name-solid', n:0 color:"#6fc9e5"%}
       {% include 'home/name-outline' %}
     </div>
-    <h1 class="h3">Front-end Web Developer</h1>
+  </div>
+  <div id="HomeHeroArrowButton" role="button">
+  <div class="circle"></div>
+    <div id="HomeHeroArrowWrapper">
+      <div class="arrow-line"></div>
+      <div class="arrow-end"></div>
+    </div>
   </div>
 </section>
 
