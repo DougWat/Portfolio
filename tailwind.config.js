@@ -21,13 +21,14 @@ module.exports = {
           header: ["SansSerifFLF", "sans-serif"],
         },
         colors:{
-          primary:"#EE8C1C",
+          primary:"#09dbbc",
+          "primary-light":"#08FDD8",
           secondary:"#14213D"
         },
         backgroundColor:{
           dark:'#1F2126',
           gray:'#847979',
-          light:"f7f7f7"
+          light:"#f5f5f5;"
         },
         textColor:{
           light:'#FFFBFF',

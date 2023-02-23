@@ -6,20 +6,20 @@ title: Home Page
 <section id="HomeHero" class="section-padding">
   <div id="HomeHeroBackground" class="background-spread" style="background-image:url({{'/assets/images/home/bg.png' | url}})"></div>
   <div id="HomeHeroContainer" class=" container">
-    <div id="HomeHeroContent">
-      <h1 class="mb-4">Hi, I'm Doug!</h1>
+    <div id="HomeHeroContent" data-slideinleft="true">
+      <h1 class="mb-4">Hey, I'm <span class="text-primary">Doug.</span></h1>
       <h3>A Front-end Web Developer</h3>
-      <span class="line"></span>
+      <span class="line text-primary"></span>
       <p>Dunno if there should be, like, a sentence or two here about me. Do people really care? I certainly wouldn’t</p>
     </div>
     <div id="HomeHeroLogo"  style="--y-div:0; --x-cos:0">
       {% include 'home/name-solid', n:6 color:"#b93ca7" %}
       {% include 'home/name-solid', n:5 color:"#af339d" %}
       {% include 'home/name-solid', n:4 color:"#af339d" %}
-      {% include 'home/name-solid', n:3 color:"#642ba7"%}
-      {% include 'home/name-solid', n:2 color:"#52319b"%}
-      {% include 'home/name-solid', n:1 color:"#6c82e9"%}
-      {% include 'home/name-solid', n:0 color:"#6fc9e5"%}
+      {% include 'home/name-solid', n:3 color:"#04ba9e"%}
+      {% include 'home/name-solid', n:2 color:"#06d1b2"%}
+      {% include 'home/name-solid', n:1 color:"#07e6c4"%}
+      {% include 'home/name-solid', n:0 color:"#08FDD8"%}
       {% include 'home/name-outline' %}
     </div>
   </div>
@@ -31,5 +31,12 @@ title: Home Page
     </div>
   </div>
 </section>
+<section id="HomeAbout" class="section-padding bg-dark">
+  <div class="container">
+      <h1 class="mb-4" data-slideinleft="true">Hey, I'm <span class="text-primary">Doug.</span></h1>
 
-  <script src="{{'/assets/scripts/home.js' | url}}"></script>
+  </div>
+</section>
+<div style="height:1000px"></div>
+
+<script src="{{'/assets/scripts/home.js' | url}}"></script>

@@ -1,0 +1,12 @@
+[data-slideinleft]{
+   position: relative;
+   opacity: 0;
+   transform: translate(-100px,0);
+   transition: opacity 500ms, transform 500ms;
+   .not-scrolled{
+   } 
+   &.scrolled{
+    opacity: 1;
+    transform: translate(0,0);
+   }
+}

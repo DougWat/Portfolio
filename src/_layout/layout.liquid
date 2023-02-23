@@ -37,10 +37,22 @@ title: Doug Watro
         src:url("{{"/assets/fonts/SansSerifFLF-Regular.otf" | url }}");
         font-weight:400;
       }
+      @font-face{
+        font-family: SansSerifFLF;
+        src:url("{{"/assets/fonts/SansSerifFLF-Medium.otf" | url }}");
+        font-weight:500;
+      }
+      @font-face{
+        font-family: SansSerifFLF;
+        src:url("{{"/assets/fonts/SansSerifFLF-Semibold.otf" | url }}");
+        font-weight:600;
+      }
     </style>  
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">    <link rel="stylesheet" href="{{ '/assets/styles/styles.css' | url }}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="{{'/assets/scripts/pathtrace.js' | url}}"></script>
+    <script src="{{'/assets/scripts/ScrollTrigger.min.js' | url}}"></script>
+    <script src="{{'/assets/scripts/ScrollTriggerSetup.js' | url}}"></script>
   </head>
   <body>
     {% include 'components/navbar' %}
