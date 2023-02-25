@@ -18,10 +18,10 @@ module.exports = {
     extend: {
         fontFamily:{
           body: ["Open Sans", "sans-serif"],
-          header: ["SansSerifFLF", "sans-serif"],
+          header: ["Recoleta", "serif"],
         },
         colors:{
-          primary:"#09dbbc",
+          primary:"#4DE191",
           "primary-light":"#08FDD8",
           secondary:"#14213D"
         },

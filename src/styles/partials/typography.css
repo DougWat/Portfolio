@@ -7,14 +7,14 @@ html{
 }
 h1,h2,h3,h4,h5,h6,p,a,button,label,textarea,input{
   line-height: 1.3em;
-  letter-spacing: .02em;
   &.light{
     @apply text-light;
   }
 }
 h1,h2,h3,h4,h5,h6{
   @apply font-header;
-  line-height: 1.2em;
+  line-height: 106%;
+  font-weight: 500;
   &.huge{
     font-size: 4.69rem;
   }
@@ -23,13 +23,13 @@ h1,h2,h3,h4,h5,h6{
   }
 }
 h1,.h1{
-  font-size: 3.4rem;
+  font-size: 3.75rem;
 }
 h2,.h2{
-  font-size: 3.4rem;
+  font-size: 3.75rem;
 }
 h3,.h3{
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 h4,.h4{
   font-size: 2rem;
@@ -44,7 +44,6 @@ h4,.h4{
 }
 p,a,label,button,input,select,textarea{
   font-size: 1.15rem;
-  letter-spacing: .05em;
   font-weight: 300;
   line-height: 1.5em;
   @apply font-body;

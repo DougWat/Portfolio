@@ -1,13 +1,13 @@
 .path-trace{
     --speed:300ms;
     opacity: 0;
-    path{
+    path,line{
         --offset:1000;
         stroke-dasharray: var(--offset);
         stroke-dashoffset: var(--offset);
         &.start{
             stroke-dashoffset:0;
-            transition: stroke-dashoffset var(--speed) ease-out;
+            transition: stroke-dashoffset var(--speed) ease-in-out;
         }
     } 
     &.start{

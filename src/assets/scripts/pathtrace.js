@@ -14,14 +14,14 @@ class PathTrace {
     }
     
     BuildPaths(target){
-        const paths = $(target).find('path');
+        const paths = $(target).find('line');
         
         paths.each((i, path)=>{
             const l = $(path)[0].getTotalLength();
             $(path)[0].style.setProperty('--offset', l);
             setTimeout(()=>{
                 $(path).addClass("start");
-            },(100 * (i+1)));
+            },(0 * (i+1)));
         });
     }
 }

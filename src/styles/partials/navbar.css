@@ -1,0 +1,35 @@
+#NavbarWrapper{
+    position: fixed;
+    top:0;
+    width:100%;
+    z-index: 100;
+}
+#NavbarDesktop{
+    position: absolute;
+    width:100%;
+    height:0px;
+    display: flex;
+    justify-content: space-between;
+    .brand{
+        position: absolute;
+        top:10px;
+        left:10px;
+        display: block;
+        flex-shrink: 0;
+        height: 60px;
+        width: 60px;
+        border: 1px solid black;
+        border-radius: 100%;
+    }
+    .resume{
+        height: 50px;
+        display: block;
+        position: absolute;
+        right:10px;
+        top:15px;
+        padding:12px 24px;
+        border: 1px solid black;
+        border-radius: 100px;
+        font-size: 1rem;
+    }
+}
