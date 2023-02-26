@@ -4,15 +4,19 @@ title: Home Page
 ---
 
 <section id="HomeHero" class="section-padding">
+    <div class="pattern" style="background-image:url({{'/assets/images/home/bg.png' | url}})"></div>
     <div id="HomeHeroBackground">
-        <div class="pattern" style="background-image:url({{'/assets/images/home/bg.png' | url}})"></div>
         {% include 'home/home-hero-corner' %}
         {% include 'home/home-hero-corner' %}
-        {% include 'home/home-hero-corner' %}
-        {% include 'home/home-hero-corner' %}
+        {% comment %} {% include 'home/home-hero-corner' %}
+        {% include 'home/home-hero-corner' %} {% endcomment %}
     </div>
     <div class="container container-large">
         <div id="HomeHeroContentBlock">
+            <div class="content-wrapper">
+                <h1><span>Hey,</span><span>I'm</span> <span>Doug</span></h1>
+                <h3>Front-end Web Developer</h3>
+            </div>
             <div class="social-wrapper">
                 {% for i in (1..2)%}
                     <a class="social-button">
@@ -20,28 +24,33 @@ title: Home Page
                     </a>    
                 {% endfor %}
             </div>
-            <div class="content-wrapper">
-                <h1><span>Hey,</span><span>I'm</span> <span>Doug</span></h1>
-                <h3>Front-end Web Developer</h3>
-            </div>
         </div>
-        <div id="HomeHeroCTABlock">
-            <div class="button-row">
-                <a class="hero-button">
-                    check out my work
-                </a>
-                <a class="hero-button">
-                    read my resume
-                </a>
-            </div>
-            <h2 class='text-primary'>or</h2>
-            <a class="hero-button">
-                contact me
-            </a>
-        </div>
+
     </div>
 </section>
-<section class="bg-dark section-padding">
-
-</section>
+{% for project in projects %}
+    <section id="HomeProject{{project.id}}" class="home-project section-padding">
+        <div class="container container-large">
+        <div class="content-block">
+            <h4 class="text-light subtitle">{{project.subtitle}}</h4>
+            <h3 class="text-light title">{{project.name}}</h3>
+            <a class="project-card-button" href="{{project.slug | url }}">see case study</a>
+            <div class="tags">
+                {% for tag in project.tags %}
+                    <p class="text-light tag">{{tag}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        {% if project.card-image %}
+            <div class="image-block">
+                <div class="image">
+                    <div class="image-wrapper">
+                        <img  class="image-cover" src="{{ project.card-image | url }}"/>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        </div>
+    </section>
+{% endfor %}
 <script src="{{'/assets/scripts/home.js' | url}}"></script>

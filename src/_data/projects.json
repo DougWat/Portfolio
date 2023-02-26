@@ -1,0 +1,18 @@
+[
+    {
+        "name":"Trusted Media Brands",
+        "subtitle":"Capitalism",
+        "slug":"/projects/trusted-media-brands",
+        "id":"Trusted",
+        "card-image":"/assets/projects/tmb/images/card.jpg",
+        "tags":[
+            "Javascript, HTML, CSS",
+            "React"
+        ]
+    },
+    {
+        "name":"Centered Ciropractic",
+        "shape":"Circle",
+        "slug":"/projects/centered"
+    }
+]
