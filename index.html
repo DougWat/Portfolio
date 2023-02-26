@@ -3,7 +3,9 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Home Page</title>
+    <title>
+    Home Page
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,8 +58,8 @@
     
     
 <section id="HomeHero" class="section-padding">
+    <div class="pattern" style="background-image:url(/Portfolio/assets/images/home/bg.png)"></div>
     <div id="HomeHeroBackground">
-        <div class="pattern" style="background-image:url(/Portfolio/assets/images/home/bg.png)"></div>
         <div class="corner">
     <svg class="path-trace" width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="--speed:1000ms">
         <line x2="300" y2="0" x1="0" y1="0" stroke="currentColor" stroke-width="2"/>
@@ -70,21 +72,14 @@
         <line x1="0" y1="0" x2="0" y2="300" stroke="currentColor" stroke-width="2"/>
     </svg>
 </div>
-        <div class="corner">
-    <svg class="path-trace" width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="--speed:1000ms">
-        <line x2="300" y2="0" x1="0" y1="0" stroke="currentColor" stroke-width="2"/>
-        <line x1="0" y1="0" x2="0" y2="300" stroke="currentColor" stroke-width="2"/>
-    </svg>
-</div>
-        <div class="corner">
-    <svg class="path-trace" width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="--speed:1000ms">
-        <line x2="300" y2="0" x1="0" y1="0" stroke="currentColor" stroke-width="2"/>
-        <line x1="0" y1="0" x2="0" y2="300" stroke="currentColor" stroke-width="2"/>
-    </svg>
-</div>
+        
     </div>
     <div class="container container-large">
         <div id="HomeHeroContentBlock">
+            <div class="content-wrapper">
+                <h1><span>Hey,</span><span>I'm</span> <span>Doug</span></h1>
+                <h3>Front-end Web Developer</h3>
+            </div>
             <div class="social-wrapper">
                 
                     <a class="social-button">
@@ -96,30 +91,51 @@
                     </a>    
                 
             </div>
-            <div class="content-wrapper">
-                <h1><span>Hey,</span><span>I'm</span> <span>Doug</span></h1>
-                <h3>Front-end Web Developer</h3>
-            </div>
         </div>
-        <div id="HomeHeroCTABlock">
-            <div class="button-row">
-                <a class="hero-button">
-                    check out my work
-                </a>
-                <a class="hero-button">
-                    read my resume
-                </a>
-            </div>
-            <h2 class='text-primary'>or</h2>
-            <a class="hero-button">
-                contact me
-            </a>
-        </div>
+
     </div>
 </section>
-<section class="bg-dark section-padding">
 
-</section>
+    <section id="HomeProjectTrusted" class="home-project section-padding">
+        <div class="container container-large">
+        <div class="content-block">
+            <h4 class="text-light subtitle">Capitalism</h4>
+            <h3 class="text-light title">Trusted Media Brands</h3>
+            <a class="project-card-button" href="/Portfolio/projects/trusted-media-brands">see case study</a>
+            <div class="tags">
+                
+                    <p class="text-light tag">Javascript, HTML, CSS</p>
+                
+                    <p class="text-light tag">React</p>
+                
+            </div>
+        </div>
+        
+            <div class="image-block">
+                <div class="image">
+                    <div class="image-wrapper">
+                        <img  class="image-cover" src="/Portfolio/assets/projects/tmb/images/card.jpg"/>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </section>
+
+    <section id="HomeProject" class="home-project section-padding">
+        <div class="container container-large">
+        <div class="content-block">
+            <h4 class="text-light subtitle"></h4>
+            <h3 class="text-light title">Centered Ciropractic</h3>
+            <a class="project-card-button" href="/Portfolio/projects/centered">see case study</a>
+            <div class="tags">
+                
+            </div>
+        </div>
+        
+        </div>
+    </section>
+
 <script src="/Portfolio/assets/scripts/home.js"></script>
     <div class="">
 
