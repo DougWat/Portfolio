@@ -32,7 +32,7 @@ function BuildScrollTrigger(){
         }
     );
     scrollTrigger.add(
-        '[data-slideintop]',{
+        '[data-slideinup]',{
             once:true,
             offset: {
             element:{
