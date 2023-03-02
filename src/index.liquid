@@ -3,30 +3,22 @@ layout: layout.liquid
 title: Home Page
 ---
 
-<section id="HomeHero" class="section-padding">
-    <div class="pattern" style="background-image:url({{'/assets/images/home/bg.png' | url}})"></div>
-    <div id="HomeHeroBackground" data-homeherolines>
+<section id="HomeHero" class="section-padding bg-dark" data-homeheroscroll>
+    <canvas id="HeroCanvas"></canvas>
+    {% comment %} <div class="pattern" style="background-image:url({{'/assets/images/home/bg.png' | url}})"></div> {% endcomment %}
+    <div id="HomeHeroBackground">
         {% include 'home/home-hero-corner' %}
         {% include 'home/home-hero-corner' %}
-        {% comment %} {% include 'home/home-hero-corner' %}
-        {% include 'home/home-hero-corner' %} {% endcomment %}
+                {% include 'home/home-hero-corner' %}
+        {% include 'home/home-hero-corner' %}
     </div>
     <div class="container container-large">
-        <div id="HomeHeroContentBlock" data-slideinleft style="--slide-transition-speed:1000ms">
-            <div class="content-wrapper">
-                <h1><span>Hey,</span><span>I'm</span> <span>Doug</span></h1>
-                <h3>Front-end Web Developer</h3>
-            </div>
-            <div class="social-wrapper">
-                <a class="social-button">
-                    {% include 'icons/email' %}
-                </a>    
-                <a class="social-button">
-                    {% include 'icons/linkedin' %}
-                </a>
+        <div id="HomeHeroContentBlock"  style="--slide-transition-speed:1000ms">
+            <div class="content-wrapper text-light">
+                <h1><span>Hey,<br/></span><span>I'm <span class="text-primary">Doug</span></span> </h1>
+                <h3>Front-end Web Developer / Shopify Expert</h3>
             </div>
         </div>
-
     </div>
 </section>
 {% for project in projects %}

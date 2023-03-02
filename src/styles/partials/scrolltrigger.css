@@ -13,3 +13,15 @@ body{
     transform: translate(0,0);
    }
 }
+[data-slideinup]{
+   position: relative;
+   opacity: 0;
+   transform: translate(0,-100px);
+   transition: opacity var(--slide-transition-speed), transform var(--slide-transition-speed);
+   .not-scrolled{
+   } 
+   &.scrolled{
+    opacity: 1;
+    transform: translate(0,0);
+   }
+}
