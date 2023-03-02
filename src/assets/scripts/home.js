@@ -1,53 +1,32 @@
+
 function HomeHero(){
-  const section = $("#HomeHero");
-  const name = $("#HomeHeroLogo");
-  
-  let allow = true;
-  
-  let sectionRect = $(section)[0].getBoundingClientRect();
-  let sectionWidth;
-  let sectionHeight;
-  let sectionWidthHalf;
-  let sectionHeightHalf;
+    const section = $("#HomeHero");
+    const heroLines = $(section).find('[data-homeherolines]').find('.path-trace');
 
-  let xCosInterval = 0;
-
-  SetSectionDimensions();
-
-  $(section)[0].onmousemove = (e)=>{
-    if(!allow){return;}
-    const x1 = e.clientX - sectionRect.left;
-    const y1 = e.clientY - sectionRect.top;
-
-    const x = (x1 - sectionWidthHalf)/sectionWidthHalf;
-    const y = (y1 - sectionHeightHalf)/sectionHeightHalf;
-
-    $(name)[0].style.setProperty('--x-div-part', x);
-    $(name)[0].style.setProperty('--y-div', y);
-    allow = false;
-    setTimeout(()=>{allow=true;},60);
-  }
-
-  function SetSectionDimensions(){
-    sectionRect = $(section)[0].getBoundingClientRect();
-    sectionWidth = sectionRect.width;
-    sectionHeight = sectionRect.height;
-    sectionWidthHalf = sectionWidth/2;
-    sectionHeightHalf = sectionHeight/2;
-  }
-
-  pathTrace.TriggerTarget($(section).find('.path-trace'));
-  setTimeout(()=>{
-    $(name).addClass('change');
-  },2200);
-
-  window.addEventListener("resize", SetSectionDimensions);
-
-  // setInterval(()=>{
-  //   const xC = Math.cos(xCosInterval);
-  //   $(name)[0].style.setProperty('--x-cos', xC);
-  //   xCosInterval += .05;
-  // },30);
+    scrollTrigger.add(
+        '[data-homeherolines]',{
+            once:true, 
+            toggle:{
+                callback:{
+                    in: () => {
+                        pathTrace.TriggerTarget(heroLines);
+                        console.log("VERY IN");
+                    },
+                    out: () => {console.log("VERY OUT")}
+                }
+            },           
+            offset: {
+                element:{
+                    x:0,
+                    y:0
+                },
+                viewport:{
+                    x:0,
+                    y:.4
+                }
+            }
+        }
+    );
 }
 
 document.addEventListener('DOMContentLoaded',()=>{

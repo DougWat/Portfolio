@@ -5,24 +5,25 @@ title: Home Page
 
 <section id="HomeHero" class="section-padding">
     <div class="pattern" style="background-image:url({{'/assets/images/home/bg.png' | url}})"></div>
-    <div id="HomeHeroBackground">
+    <div id="HomeHeroBackground" data-homeherolines>
         {% include 'home/home-hero-corner' %}
         {% include 'home/home-hero-corner' %}
         {% comment %} {% include 'home/home-hero-corner' %}
         {% include 'home/home-hero-corner' %} {% endcomment %}
     </div>
     <div class="container container-large">
-        <div id="HomeHeroContentBlock">
+        <div id="HomeHeroContentBlock" data-slideinleft style="--slide-transition-speed:1000ms">
             <div class="content-wrapper">
                 <h1><span>Hey,</span><span>I'm</span> <span>Doug</span></h1>
                 <h3>Front-end Web Developer</h3>
             </div>
             <div class="social-wrapper">
-                {% for i in (1..2)%}
-                    <a class="social-button">
-                        O
-                    </a>    
-                {% endfor %}
+                <a class="social-button">
+                    {% include 'icons/email' %}
+                </a>    
+                <a class="social-button">
+                    {% include 'icons/linkedin' %}
+                </a>
             </div>
         </div>
 
@@ -34,7 +35,13 @@ title: Home Page
         <div class="content-block">
             <h4 class="text-light subtitle">{{project.subtitle}}</h4>
             <h3 class="text-light title">{{project.name}}</h3>
-            <a class="project-card-button" href="{{project.slug | url }}">see case study</a>
+            <a class="project-card-button" href="{{project.slug | url }}">
+                {% if project.cta-text %}
+                    {{project.cta-text}}
+                {% else %}
+                    see case study
+                {% endif %}
+            </a>
             <div class="tags">
                 {% for tag in project.tags %}
                     <p class="text-light tag">{{tag}}</p>

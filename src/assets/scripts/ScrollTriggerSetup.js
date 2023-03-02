@@ -4,14 +4,14 @@ function BuildScrollTrigger(){
         '[data-slideinleft]',{
             once:true,
             offset: {
-            element:{
-                x:0,
-                y:0
-            },
-            viewport:{
-                x:0,
-                y:.4
-            }
+                element:{
+                    x:0,
+                    y:0
+                },
+                viewport:{
+                    x:0,
+                    y:.4
+                }
             },
         }
     );
@@ -76,7 +76,7 @@ function BuildScrollTrigger(){
                 }
             }
         }
-    )
+    );
     window.dispatchEvent(new CustomEvent('scroll'));
 }
 

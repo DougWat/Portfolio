@@ -5,14 +5,21 @@
         "slug":"/projects/trusted-media-brands",
         "id":"Trusted",
         "card-image":"/assets/projects/tmb/images/card.jpg",
+        "cta-text":"check it out",
         "tags":[
-            "Javascript, HTML, CSS",
-            "React"
+            "Javascript, HTML, CSS, PostCSS, Tailwind",
+            "11ty, Liquid"
         ]
     },
     {
-        "name":"Centered Ciropractic",
-        "shape":"Circle",
-        "slug":"/projects/centered"
+        "name":"D&D \nSound Mixer",
+        "slug":"/projects/sound-mixer",
+        "id":"Sound",
+        "card-image":"",
+        "cta-text":"listen",
+        "tags":[
+            "Javascript, HTML, CSS, SASS",
+            "React, Redux"
+        ]
     }
 ]

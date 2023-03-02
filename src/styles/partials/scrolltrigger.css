@@ -1,8 +1,11 @@
+body{
+   --slide-transition-speed: 500ms;
+}
 [data-slideinleft]{
    position: relative;
    opacity: 0;
    transform: translate(-100px,0);
-   transition: opacity 500ms, transform 500ms;
+   transition: opacity var(--slide-transition-speed), transform var(--slide-transition-speed);
    .not-scrolled{
    } 
    &.scrolled{
