@@ -59,7 +59,7 @@
     
 <section id="HomeHero" class="section-padding">
     <div class="pattern" style="background-image:url(/Portfolio/assets/images/home/bg.png)"></div>
-    <div id="HomeHeroBackground">
+    <div id="HomeHeroBackground" data-homeherolines>
         <div class="corner">
     <svg class="path-trace" width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="--speed:1000ms">
         <line x2="300" y2="0" x1="0" y1="0" stroke="currentColor" stroke-width="2"/>
@@ -75,21 +75,30 @@
         
     </div>
     <div class="container container-large">
-        <div id="HomeHeroContentBlock">
+        <div id="HomeHeroContentBlock" data-slideinleft style="--slide-transition-speed:1000ms">
             <div class="content-wrapper">
                 <h1><span>Hey,</span><span>I'm</span> <span>Doug</span></h1>
                 <h3>Front-end Web Developer</h3>
             </div>
             <div class="social-wrapper">
-                
-                    <a class="social-button">
-                        O
-                    </a>    
-                
-                    <a class="social-button">
-                        O
-                    </a>    
-                
+                <a class="social-button">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 503.9 343.3" style="enable-background:new 0 0 503.9 343.3;" xml:space="preserve">
+<path style="fill:currentColor" d="M230.9,191.5L12.9,0h478L273.2,191.3c-5.9,5-13.4,7.7-21.2,7.7
+	C244.3,199.1,236.8,196.5,230.9,191.5L230.9,191.5z M328.7,172.6l175.2,153.9V18.7L328.7,172.6z M288.1,208.2
+	c-10,8.6-22.8,13.3-36,13.2c-13.2,0.2-26-4.5-36-13l-23.8-20.9L15.1,343.3h473.8L311.6,187.6L288.1,208.2z M0,18.7v307.9
+	l175.2-153.9L0,18.7z"/>
+</svg>
+
+                </a>    
+                <a class="social-button">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 23 22" style="enable-background:new 0 0 23 22;" xml:space="preserve">
+<path fill="currentColor" d="M5,22H0V7h5V22z M2.5,5C1.1,5,0,3.9,0,2.5S1.1,0,2.5,0C3.9,0,5,1.1,5,2.5C5,3.9,3.9,5,2.5,5z M23,22h-4.8v-7.3
+	c0-1.7,0-4-2.5-4c-2.5,0-2.9,1.9-2.9,3.9V22H8V7h4.6V9h0.1c0.6-1.2,2.2-2.4,4.6-2.4c4.9,0,5.8,3.1,5.8,7.2C23,13.8,23,22,23,22z"/>
+</svg>
+
+                </a>
             </div>
         </div>
 
@@ -101,12 +110,16 @@
         <div class="content-block">
             <h4 class="text-light subtitle">Capitalism</h4>
             <h3 class="text-light title">Trusted Media Brands</h3>
-            <a class="project-card-button" href="/Portfolio/projects/trusted-media-brands">see case study</a>
+            <a class="project-card-button" href="/Portfolio/projects/trusted-media-brands">
+                
+                    check it out
+                
+            </a>
             <div class="tags">
                 
-                    <p class="text-light tag">Javascript, HTML, CSS</p>
+                    <p class="text-light tag">Javascript, HTML, CSS, PostCSS, Tailwind</p>
                 
-                    <p class="text-light tag">React</p>
+                    <p class="text-light tag">11ty, Liquid</p>
                 
             </div>
         </div>
@@ -122,16 +135,33 @@
         </div>
     </section>
 
-    <section id="HomeProject" class="home-project section-padding">
+    <section id="HomeProjectSound" class="home-project section-padding">
         <div class="container container-large">
         <div class="content-block">
             <h4 class="text-light subtitle"></h4>
-            <h3 class="text-light title">Centered Ciropractic</h3>
-            <a class="project-card-button" href="/Portfolio/projects/centered">see case study</a>
+            <h3 class="text-light title">D&D 
+Sound Mixer</h3>
+            <a class="project-card-button" href="/Portfolio/projects/sound-mixer">
+                
+                    listen
+                
+            </a>
             <div class="tags">
+                
+                    <p class="text-light tag">Javascript, HTML, CSS, SASS</p>
+                
+                    <p class="text-light tag">React, Redux</p>
                 
             </div>
         </div>
+        
+            <div class="image-block">
+                <div class="image">
+                    <div class="image-wrapper">
+                        <img  class="image-cover" src="."/>
+                    </div>
+                </div>
+            </div>
         
         </div>
     </section>

@@ -9,19 +9,22 @@ class PathTrace {
     }
     
 
-    TriggerTarget(target){
-        $(target).addClass("start");
+    TriggerTarget(targets){
+        $(targets).each((i,target)=>{
+            console.log(target);
+            const paths = $(target).find('line');
+            paths.each((i, path)=>{
+                $(path).addClass("start-path-trace");
+            });
+        });
     }
     
     BuildPaths(target){
         const paths = $(target).find('line');
-        
         paths.each((i, path)=>{
             const l = $(path)[0].getTotalLength();
+            console.log(path);
             $(path)[0].style.setProperty('--offset', l);
-            setTimeout(()=>{
-                $(path).addClass("start");
-            },(0 * (i+1)));
         });
     }
 }
