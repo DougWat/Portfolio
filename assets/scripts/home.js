@@ -2,7 +2,7 @@
 function HomeHero(){
     const section = $("#HomeHero");
     const heroLines = $(section).find('#HomeHeroBackground').find('.path-trace');
-    const Canvas = new HomeCanvas(section);
+    //const Canvas = new HomeCanvas(section);
 
     scrollTrigger.add(
         '[data-homeheroscroll]',{
@@ -49,7 +49,7 @@ function HomeCanvas(section){
         }
 
         Draw(ctx){
-            ctx.strokeStyle = "rgba(77, 225, 145, .1)";
+            ctx.strokeStyle = "rgba(255, 225, 255, .05)";
             ctx.beginPath();
             ctx.ellipse(this.x,this.y,this.radius,this.radius, 360,0,360,false);
             ctx.closePath();
@@ -75,14 +75,14 @@ function HomeCanvas(section){
         setTimeout(Add,200);
     }
     function Add(){
-        circles.push(new Circle(400,400));
-        setTimeout(Add,200 + (100 * Math.cos((startTime - lastTime)/1000)));
+        circles.push(new Circle(canvas.width/2,canvas.height/2));
+        setTimeout(Add,300 + (200 * Math.cos((startTime - lastTime)/1000)));
     }
 
     function Loop(){
         SetDeltaTime();
         Logic();
-        //Draw();
+        Draw();
         requestAnimationFrame(Loop);
     }
 
@@ -114,9 +114,8 @@ function HomeCanvas(section){
     
     this.SetCanvasSize = () =>{
         canvas.width = $(section).innerWidth();
-        canvas.height = $(section).innerHeight();
+        canvas.height = $(section).innerHeight() + 100;
     }
-    
     Init();
 }
 
