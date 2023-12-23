@@ -17,7 +17,7 @@
     <script src="/Portfolio/assets/scripts/pathtrace.js"></script>
     <script src="/Portfolio/assets/scripts/ScrollTrigger.min.js"></script>
     <script src="/Portfolio/assets/scripts/ScrollTriggerSetup.js"></script>
-    <script src="/Portfolio/assets/scripts/Rotato.js"></script>
+    <script src="/Portfolio/assets/scripts/rotato.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
     <script type="importmap">
       {
@@ -861,7 +861,7 @@
                 }
 
                 function AddModel(){
-                    loader.load( "/assets/models/computer/computer.glb", function ( gltf ) {
+                    loader.load( "/Portfolio/assets/models/computer/computer.glb", function ( gltf ) {
                     const item = gltf.scene;
                     item.traverse(n => { if ( n.isMesh ) {
                         n.castShadow = true;
