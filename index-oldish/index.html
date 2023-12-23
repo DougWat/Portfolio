@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>
+    Home Page
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/Portfolio/assets/styles/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/Portfolio/assets/scripts/pathtrace.js"></script>
+    <script src="/Portfolio/assets/scripts/ScrollTrigger.min.js"></script>
+    <script src="/Portfolio/assets/scripts/ScrollTriggerSetup.js"></script>
+    <script src="/Portfolio/assets/scripts/Rotato.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "GLTFLoader":"https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    
+    
+<section id="HomeHero" class="section-padding bg-dark" data-homeheroscroll>
+     
+    <canvas id="HeroCanvas"></canvas>
+    
+    
+    <div class="container container-large">
+        <div id="HomeHeroContentBlock"  style="--slide-transition-speed:1000ms">
+            <div class="content-wrapper text-light">
+                <h1><span>Hey, </span><span>I'm <span class="text-primary">Doug</span></span> </h1>
+                <h3>Web Developer<br/>& Shopify Expert</h3>
+            </div>
+            <p class="text-light">I've worked with many clients, from nation-wide brands to local mom & pop shops. I know that great design is as important as great code, and I can make CSS do... just about anything.</p>
+        </div>
+    </div>
+</section>
+<div class="section-buffer bg-dark">
+    <svg viewbox="0,0,100,100" preserveAspectRatio="none">
+        <polygon points="0,100 100,0 100,100" />
+      </svg>
+</div>
+<section id="HomeProject-tmb" class="home-project section-padding">
+<div class="container container-xxlarge">
+    <div class="content-block">
+        <h4 class="subtitle">CAPITALISM</h4>
+        <h3 class=" title">Trusted Media Brands</h3>
+        <a class="project-card-button" href="/Portfolio/projects/trusted-media-brands">
+            check it out
+        </a>
+        <div class="tags">
+            <p class="text-light tag">Javascript, HTML, CSS, PostCSS, Tailwind</p>
+            <p class="text-light tag">11ty, Liquid</p>
+        </div>
+    </div>
+        <div class="image-block">
+            <div class="image">
+                <div class="image-wrapper">
+                    <img  class="image-cover" src="/Portfolio/assets/projects/tmb/images/card.jpg"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/Portfolio/assets/scripts/home.js"></script>
+    <div class="">
+
+</div>
+
+  </body>
+</html>

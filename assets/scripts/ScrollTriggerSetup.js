@@ -77,6 +77,36 @@ function BuildScrollTrigger(){
             }
         }
     );
+    scrollTrigger.add(
+        '[data-scroll-once]',{
+            once:true,
+            offset:{
+                element:{
+                    x:0,
+                    y:0
+                },
+                viewport:{
+                    x:0,
+                    y:.4
+                }
+            }
+        }
+    );
+    scrollTrigger.add(
+        '[data-scroll-multi]',{
+            once:false,
+            offset:{
+                element:{
+                    x:0,
+                    y:0
+                },
+                viewport:{
+                    x:0,
+                    y:.4
+                }
+            }
+        }
+    );
     window.dispatchEvent(new CustomEvent('scroll'));
 }
 

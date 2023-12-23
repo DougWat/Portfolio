@@ -22,7 +22,7 @@ function HomeHero(){
     const x = (x1 - sectionWidthHalf)/sectionWidthHalf;
     const y = (y1 - sectionHeightHalf)/sectionHeightHalf;
 
-    $(name)[0].style.setProperty('--x-div-part', x);
+    $(name)[0].style.setProperty('--x-div', x);
     $(name)[0].style.setProperty('--y-div', y);
     allow = false;
     setTimeout(()=>{allow=true;},60);
