@@ -85,7 +85,7 @@ title: Home Page
                 }
 
                 function AddModel(){
-                    loader.load( "{{ '/assets/models/computer/computer.glb' }}", function ( gltf ) {
+                    loader.load( "{{ '/assets/models/computer/computer.glb' | url}}", function ( gltf ) {
                     const item = gltf.scene;
                     item.traverse(n => { if ( n.isMesh ) {
                         n.castShadow = true;
