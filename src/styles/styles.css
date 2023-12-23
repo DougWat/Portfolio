@@ -8,8 +8,12 @@
 
 @import "/partials/pathtrace.css";
 @import "/partials/scrolltrigger.css";
+@import "/partials/rotato.css";
+@import "/partials/svg-anim.css";
 
 @import "/partials/navbar.css";
+
+@import "/partials/input.css";
 
 @import "/partials/base.css";
 @import "/partials/home.css";

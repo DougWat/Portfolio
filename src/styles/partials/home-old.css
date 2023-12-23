@@ -100,7 +100,7 @@
     --scale-factor: 0;
     --rot-factor: 0;
     --trans-factor: 0;
-    --x-div: calc(var(--x-div-part) + (var(--x-cos)/4));
+    --x-div: calc(var(--x-div) + (var(--x-cos)/4));
     --stroke-width:1px;
     position: relative;
     max-width: 300px;

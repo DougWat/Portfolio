@@ -17,8 +17,8 @@ module.exports = {
     },
     extend: {
         fontFamily:{
-          body: ["Open Sans", "sans-serif"],
-          header: ["Recoleta", "serif"],
+          body: ["Poppins", "sans-serif"],
+          header: ["Poppins", "sans-serif"],
         },
         colors:{
           primary:"#4DE191",
@@ -26,13 +26,15 @@ module.exports = {
           secondary:"#14213D"
         },
         backgroundColor:{
+          green:'#C6F0C5',
+          'light-green':'#D6F3D5',
           dark:'#1D1D1D',
           gray:'#847979',
           light:"#f5f5f5;"
         },
         textColor:{
-          light:'#FFFBFF',
-          dark:'#0B0A07'
+          light:'#D5D5D5',
+          dark:'#664799'
         }
     },
   },

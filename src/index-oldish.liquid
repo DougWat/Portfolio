@@ -1,0 +1,58 @@
+---
+layout: layout.liquid
+title: Home Page
+---
+
+<section id="HomeHero" class="section-padding bg-dark" data-homeheroscroll>
+     {% comment %} <div class="background-video background-spread">
+        <video width="320" height="240" autoplay playsinline muted loop>
+        <source src="{{"/assets/video/home-hero.webm"}}" type="video/webm">
+        Your browser does not support the video tag.
+        </video>
+    </div>  {% endcomment %}
+    <canvas id="HeroCanvas"></canvas>
+    {% comment %} <div class="pattern" style="background-image:url({{'/assets/images/home/bg.png' | url}})"></div> {% endcomment %}
+    {% comment %} <div id="HomeHeroBackground">
+        {% include 'home/home-hero-corner' %}
+        {% include 'home/home-hero-corner' %}
+        {% include 'home/home-hero-corner' %}
+        {% include 'home/home-hero-corner' %}
+    </div> {% endcomment %}
+    <div class="container container-large">
+        <div id="HomeHeroContentBlock"  style="--slide-transition-speed:1000ms">
+            <div class="content-wrapper text-light">
+                <h1><span>Hey, </span><span>I'm <span class="text-primary">Doug</span></span> </h1>
+                <h3>Web Developer<br/>& Shopify Expert</h3>
+            </div>
+            <p class="text-light">I've worked with many clients, from nation-wide brands to local mom & pop shops. I know that great design is as important as great code, and I can make CSS do... just about anything.</p>
+        </div>
+    </div>
+</section>
+<div class="section-buffer bg-dark">
+    <svg viewbox="0,0,100,100" preserveAspectRatio="none">
+        <polygon points="0,100 100,0 100,100" />
+      </svg>
+</div>
+<section id="HomeProject-tmb" class="home-project section-padding">
+<div class="container container-xxlarge">
+    <div class="content-block">
+        <h4 class="subtitle">CAPITALISM</h4>
+        <h3 class=" title">Trusted Media Brands</h3>
+        <a class="project-card-button" href="{{ '/projects/trusted-media-brands' | url}}">
+            check it out
+        </a>
+        <div class="tags">
+            <p class="text-light tag">Javascript, HTML, CSS, PostCSS, Tailwind</p>
+            <p class="text-light tag">11ty, Liquid</p>
+        </div>
+    </div>
+        <div class="image-block">
+            <div class="image">
+                <div class="image-wrapper">
+                    <img  class="image-cover" src="{{ '/assets/projects/tmb/images/card.jpg' | url }}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{{'/assets/scripts/home.js' | url}}"></script>

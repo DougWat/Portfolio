@@ -3,65 +3,331 @@ layout: layout.liquid
 title: Home Page
 ---
 
-<section id="HomeHero" class="section-padding bg-dark" data-homeheroscroll>
-    <div class="background-video background-spread">
-        <video width="320" height="240" autoplay playsinline muted loop>
-        <source src="{{"/assets/video/home-hero.webm"}}" type="video/webm">
-        Your browser does not support the video tag.
-</video>
+<section id="HomeHero" class="bg-green section-padding">
+    <div id="HomeHeroBG" class="full-abs rellax" data-rellax-speed="-4">
+    {% include 'svganim/herobg'%}
     </div>
-    <canvas id="HeroCanvas"></canvas>
-    {% comment %} <div class="pattern" style="background-image:url({{'/assets/images/home/bg.png' | url}})"></div> {% endcomment %}
-    <div id="HomeHeroBackground">
-        {% include 'home/home-hero-corner' %}
-        {% include 'home/home-hero-corner' %}
-        {% include 'home/home-hero-corner' %}
-        {% include 'home/home-hero-corner' %}
-    </div>
-    <div class="container container-xxlarge">
-        <div id="HomeHeroContentBlock"  style="--slide-transition-speed:1000ms">
-            <div class="content-wrapper text-light">
-                <h1><span>Hey, </span><span>I'm <span class="text-primary">Doug</span></span> </h1>
-                <h3>Web Developer<br/>& Shopify Expert</h3>
+    <div class="container content relative">
+        <div class="copy rellax" data-rellax-speed="2">
+            <h1>Hey,<br/>I’m 
+            <span class="name">
+                <span class="dummy-name">Doug</span>
+                <span class="full-abs svg-wrapper" style="">
+                    {% include 'svganim/name', class:"svg-name"%}
+                </span>
+            </span>
+            </h1>
+            <div>
+                <h5>I’m a Front-End Developer, and a Shopify Expert</h5>
+                <div>
+                    <h5 class="home-text-switcher">
+                        I’m also a bit of a&nbsp;
+                        <span class="master-span">
+
+                        </span>
+                    </h5>
+                </div>
+                <h5>But who’s counting? (I’m not)</h5>
             </div>
-            <p class="text-light">I've worked with many clients, from nation-wide brands to local mom & pop shops. I know that great design is as important as great code, and I can make CSS do... just about anything.</p>
+            <a class="button">
+                contact me
+            </a>
         </div>
+        <div id="HeroComputer" class="rotato" style="border:1px solid black;">
+
+        </div>
+        <script type="module">    
+            import * as THREE from 'three';
+            import { GLTFLoader } from 'GLTFLoader';
+            function ComputerRender(){
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera( 60, 1, .01, 10 );
+                const loader = new GLTFLoader();
+                const element = $("#HeroComputer");
+                                    SetRandomLookPoint();
+                const renderer = new THREE.WebGLRenderer({alpha:true,antialias:true});
+                const lights = [];
+
+                let Computer;
+                let monitorMesh;
+                let screenMesh;
+                let chasisMesh;
+
+                Init();
+                BuildLights();
+                AddModel();
+
+
+                function animate() {
+                    requestAnimationFrame( animate );
+                    Logic();
+                    screenMesh.material.emissiveMap.needsUpdate = true;
+                    //Computer.setRotationFromAxisAngle(new THREE.Vector3(1,0,0),.2);
+                    renderer.render( scene, camera );
+                }
+                function Init(){
+                    renderer.toneMapping = THREE. ReinhardToneMapping;
+                    renderer.toneMappingExposure = 1;
+                    renderer.outputEncoding = THREE.sRGBEncoding;
+                    renderer.physicallyCorrectLights = true;
+                    renderer.setSize( 500, 500 );
+                    $(element)[0].appendChild( renderer.domElement );
+                                    camera.position.z = 4.5;
+                }
+
+                function BuildLights(){
+                    scene.add(new THREE.HemisphereLight(0xffeeb1,0x080820,3));
+                    //AddLight(0xFFFFFF,4000,{x:-200,y:200,z:50});
+                    //AddLight(0xda75ff,1000,{x:-50,y:0,z:50});
+                    AddLight(0xecb2ed,700,{x:-10,y:5,z:10});
+                    AddLight(0xC6F0C5,700,{x:10,y:5,z:10});
+                    AddLight(0xecb2ed,700,{x:0,y:-10,z:15});
+                }
+
+                function AddModel(){
+                    loader.load( "{{ '/assets/models/computer/computer.glb' }}", function ( gltf ) {
+                    const item = gltf.scene;
+                    item.traverse(n => { if ( n.isMesh ) {
+                        n.castShadow = true;
+                        n.receiveShadow = true;
+                        if(n.material.map) n.material.map.anisotropy = 1;
+
+                        if(n.name == "Screen"){
+                            //n.material.emissive = 0x999999;
+                            screenMesh = n;
+                                                                CanvasTest();
+                        }else if(n.name =="Monitor"){
+                            monitorMesh = n;
+                        }else if(n.name == "Chassis"){
+                            chasisMesh = n;
+                        }
+                    }});
+                    //monitorMesh.add(screenMesh);
+                    item.translateY(-1.7);
+                    Computer = item;
+                    scene.add( Computer );
+                                    animate();
+
+                }, undefined, function ( error ) {
+
+                    console.error( error );
+
+                } );
+                }
+
+                function CanvasTest(){
+                    var canvas = document.createElement('canvas');
+                    var ctx = canvas.getContext('2d');
+                    document.body.appendChild(canvas);
+                    canvas.width = 500;
+                    canvas.height = 375;
+                    ctx.fillStyle = '#2288AA';
+                    ctx.fillRect(40, 40, canvas.width - 80 , canvas.height- 80);
+                    ctx.strokeStyle = '#ecb2ed';
+                    ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
+
+                    const img = new Image();
+                    img.src = "{{ '/assets/projects/tmb/images/card.jpg' | url}}";
+                    img.onload = () => {
+                        //alert('load')
+                        ctx.drawImage(img, 0, 0);
+                    };
+                    var texture = new THREE.CanvasTexture(canvas);
+                    texture.encoding = THREE.sRGBEncoding;
+                    texture.flipY = false;
+                    screenMesh.material.map = texture;
+
+                    screenMesh.material.emissive = new THREE.Color(0xffffff);
+                    screenMesh.material.emissiveMap = texture;
+                    screenMesh.material.emissiveIntensity = 1;
+                }
+
+                function AddLight(color, intensity, position){
+                    const light = new THREE.SpotLight(color,intensity);
+                    light.position.set(position.x,position.y,position.z);
+                    light.castShadow = true;
+                    light.shadow.bias = -0.0001;
+                    light.shadow.mapSize.width = 1024;
+                    light.shadow.mapSize.height = 1024;
+                    lights.push(light);
+                    scene.add(light);
+                }
+
+                let currentRot = new THREE.Vector3(0,0,0);
+                let desiredRot = new THREE.Vector3(0,0,0);
+                let rotSpeed = .01;
+
+                function Logic(){
+                    desiredRot.x = $(element).attr('data-yDiv');
+                    desiredRot.y = $(element).attr('data-xDiv');
+
+                    currentRot.x = GetFrameRotInc(currentRot.x,desiredRot.x);
+                    currentRot.y = GetFrameRotInc(currentRot.y,desiredRot.y);
+
+                    monitorMesh.rotation.x = currentRot.x * .2;
+                    monitorMesh.rotation.y = currentRot.y * .7;
+                    screenMesh.rotation.x = currentRot.x * .2;
+                    screenMesh.rotation.y = currentRot.y * .7;
+                    chasisMesh.rotation.y = currentRot.y * .1;
+                }
+
+                function SetRandomLookPoint(){
+                    const x = Math.random() * 2 - 1;
+                    const y = Math.random() * 2 - 1;
+
+                    $(element.attr('data-yDiv',y));
+                    $(element.attr('data-xDiv',x));
+
+                    const rand = Math.floor(Math.random()*10000) + 1000;
+                    console.log(rand);
+                    setTimeout(()=>{
+                        SetRandomLookPoint();
+                    },rand);
+                }
+
+                
+                function GetFrameRotInc(current,desired){
+                    const x = current - desired;
+                    if(Math.abs(x) < .0001){return current;}
+                    return current - (x/40);
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded",ComputerRender);
+        </script>
     </div>
 </section>
-<div class="section-buffer bg-dark">
-    <svg viewbox="0,0,100,100" preserveAspectRatio="none">
-        <polygon points="0,100 100,0 100,100" />
-      </svg>
-</div>
-{% for project in projects %}
-    <section id="HomeProject{{project.id}}" class="home-project section-padding">
-        <div class="container container-xxlarge">
-        <div class="content-block">
-            <h4 class="subtitle">{{project.subtitle}}</h4>
-            <h3 class=" title">{{project.name}}</h3>
-            <a class="project-card-button" href="{{project.slug | url }}">
-                {% if project.cta-text %}
-                    {{project.cta-text}}
-                {% else %}
-                    see case study
-                {% endif %}
-            </a>
-            <div class="tags">
-                {% for tag in project.tags %}
-                    <p class="text-light tag">{{tag}}</p>
-                {% endfor %}
-            </div>
+<section id="HomePortfolio" class="bg-light-green section-padding">
+    <div class="container  content">
+        <div class="portfolio-top" data-scroll-once>
+            <h5>Portfolio</h5><div class="line">{% include 'svganim/line', class:"svg-line"%}</div>
         </div>
-        {% if project.card-image %}
-            <div class="image-block">
-                <div class="image">
-                    <div class="image-wrapper">
-                        <img  class="image-cover" src="{{ project.card-image | url }}"/>
-                    </div>
+
+        <div class="portfolio-item" data-scroll-multi>
+            <div class="portfolio-item-copy">
+                <h2 class="mb-2">Trusted<br/>Media Brands<div class="line">{% include 'svganim/line', class:"svg-line"%}</div></h2>
+                <h5 class="mb-16">(Reader’s Digest, Birds & Blooms, etc.)</h5>
+                <a class="button button-outlined button-larger">check it out</a>
+            </div>
+            <div class="portfolio-item-image-block rotato">
+                <div class="portfolio-item-image rotato-target" style="--rotato-deg:20deg">
+                    <p class="tags">
+                        Javascript, HTML, CSS, PostCSS, Tailwind, 11ty, Liquid
+                    </p>
                 </div>
             </div>
-        {% endif %}
         </div>
-    </section>
+
+        <div class="portfolio-item" data-scroll-multi>
+            <div class="portfolio-item-copy">
+                <h2 class="mb-4">FORVR<div class="line">{% include 'svganim/line', class:"svg-line"%}</div></h2>
+                <h5 class="mb-16">(National, luxury candle brand.)</h5>
+                <a class="button button-outlined button-larger">check it out</a>
+            </div>
+            <div class="portfolio-item-image-block rotato">
+                <div class="portfolio-item-image rotato-target"style="--rotato-deg:20deg">
+                    <p class="tags">
+                        Javascript, HTML, CSS, PostCSS, Tailwind, Liquid
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    <div class="b-side-prompt">
+        <h2>I do more than web stuff</h2>
+        <a class="button button-outlined button-larger">b-side</a>
+    </div>
+    </div>
+</section>
+<section id="HomeContact" class="section-padding text-light">
+    <div id="HomeContactBG" class="full-abs">
+    {% include 'svganim/herobg'%}
+    </div>
+    <div class="container content">
+        <h3>Get in touch</h3>
+        <a class="email-icon rotato rotato-target" style="--rotato-deg:20deg">
+            {% include 'svganim/email'%}
+        </a>
+    </div>
+</section>  
+<script>
+    function HomeHero(){
+        TextSwitcher();
+        function TextSwitcher(){
+            const text = ["3D artist","game developer","5 hp goblin", "whimsical little fella", "rascal", "sculpter", "cyclist", "awful musician", "illustrator", "craftsman","chef","writer","numpty"];
+            const master = $(".home-text-switcher");
+            const masterSpan = $(master).find('.master-span');
+            
+            let previousSpanIndex = -1;
+
+            function GetNextSpan(){
+                let randIndex = previousSpanIndex;
+                while(previousSpanIndex == randIndex){
+                    randIndex = Math.floor(Math.random() * text.length);
+                }
+                previousSpanIndex = randIndex; 
+                AddNewSpan(randIndex);
+            } 
+
+            function AddNewSpan(index){
+                $(masterSpan).prepend($("<span>").append(text[index]));
+
+                if($(masterSpan).children().length > 3){
+                    $(masterSpan).find("span:last").remove();
+                }
+            }
+
+            GetNextSpan();
+            GetNextSpan();
+
+            setInterval(()=>{
+                GetNextSpan();
+            },600)
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded',()=>{
+        HomeHero();
+    });
+</script>
+<script>
+    function SVGAnim(){
+        let svgAnimItems = [];
+        $('.svg-anim').each((i,item)=>{
+            svgAnimItems.push(new SVGAnimItem(item));
+        });
+
+        setInterval(()=>{
+            svgAnimItems.forEach((item)=>{
+               item.AdvFrame();
+            });
+        },99);
+    }
+
+    function SVGAnimItem(elm){
+        const frames = $(elm).find('g');
+        const maxFrames = $(frames).length;
+        let currentFrame = 0;
+
+        function ShowCurrentFrame(){
+            $(frames).removeClass('show');
+            $(frames).eq(currentFrame).addClass('show');
+        }
+
+        this.AdvFrame = function(){
+            currentFrame = (currentFrame + 1) % maxFrames;
+            ShowCurrentFrame();
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded',()=>{
+        SVGAnim();
+    });
+</script>
+{% for i in (1..10)%}
+
 {% endfor %}
-<script src="{{'/assets/scripts/home.js' | url}}"></script>
+<script>
+  // Accepts any class name
+  var rellax = new Rellax('.rellax');
+</script>
