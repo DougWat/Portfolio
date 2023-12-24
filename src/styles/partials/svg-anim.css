@@ -1,15 +1,85 @@
-.svg-anim{
+/* .svg-anim{
     >g{
         display:none;
         &.show{
             display: block;
         }
     }
-}
+} */
 .svg-anim-line{
     fill: none;
     stroke: #fff;
     stroke-linecap: round;
     stroke-miterlimit: 6;
     stroke-width: 1px;
+}
+
+@keyframes svga1{
+    0%{
+        opacity: 1;
+    }
+    33.2%{
+        opacity: 1;
+    }
+    33.333%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+@keyframes svga2{
+    0%{
+        opacity: 0;
+    }
+    33.2%{
+        opacity: 0;
+    }
+    33.3333%{
+        opacity: 1;
+    }
+    66.5%{
+        opacity: 1;
+    }
+    66.6666%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+@keyframes svga3{
+    0%{
+        opacity: 0;
+    }
+    66.5%{
+        opacity: 0;
+    }
+    66.6666%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.svg-anim{
+    transform: scale(1);
+    >g{
+        //display: none;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-duration: .3s;
+        animation-play-state: running;
+        shape-rendering: geometricPrecision;
+        &:nth-of-type(1){
+            animation-name:svga1;
+        }
+        &:nth-of-type(2){
+            animation-name:svga2;
+        }
+        &:nth-of-type(3){
+            animation-name:svga3;
+        }
+    }
 }

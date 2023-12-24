@@ -1,6 +1,6 @@
 #HomeHero{
     position: relative;
-    height:100vh;
+    height:70vh;
     min-height: 700px;
     overflow: hidden;
     .content{
@@ -83,6 +83,47 @@
         stroke: #dc97e5;
         stroke-miterlimit: 10;
         stroke-width:2px;
+    }
+}
+#HeroComputer{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .ground-wrapper{
+        height:300px;
+        width: 300px;
+        z-index: 0;
+        position: absolute;
+        scale:1.2;
+        .circle{
+        }
+        svg{
+            margin: 0 auto;
+            @apply full-abs;
+            path{
+                fill: none;
+                stroke-width: 3;
+                stroke: white !important;
+            }
+            &:nth-of-type(2){
+                transform: scale(1.2) rotateZ(90deg);
+            }
+        }
+        .ground{
+            width:100%;
+            height:100%;
+            border-radius: 100%;
+            background-color: rgb(189, 44, 141);
+            filter: blur(30px);
+            opacity: .3;
+            mix-blend-mode: hard-light;
+            position: relative;
+            z-index: 0;
+        }
+    }
+    canvas{
+        position: relative;
     }
 }
 #HomePortfolio{

@@ -26,9 +26,38 @@ title: Doug Watro
       {
         "imports": {
           "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "EffectComposer": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/EffectComposer.js",
+          "GlitchPass": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/GlitchPass.js",
+          "RenderPass": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/RenderPass.js",
+          "OutputPass": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/OutputPass.js",
           "GLTFLoader":"https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js"
         }
       }
+    </script>
+    <script>
+      const time = function(){
+        this.then = Date.now();
+        this.now  = Date.now();
+        this.intDelta;
+        this.delta = 0;
+
+        this.NextFrame = function(){
+          this.then = this.now;
+          this.now = Date.now();
+          this.intDelta = (this.now - this.then);
+          this.delta = this.intDelta/1000;
+        }
+
+      }
+      const Time = new time;
+      
+      function AdvTime(){
+        Time.NextFrame();
+        requestAnimationFrame(AdvTime);
+      }
+
+      AdvTime();
+
     </script>
   </head>
   <body>
