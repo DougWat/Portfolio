@@ -108,6 +108,11 @@
             }
             &:nth-of-type(2){
                 transform: scale(1.2) rotateZ(90deg);
+                opacity: .8;
+            }
+            &:nth-of-type(3){
+                transform: scale(1.4) rotateZ(120deg);
+                opacity: .5;
             }
         }
         .ground{
