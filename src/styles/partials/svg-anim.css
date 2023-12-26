@@ -1,11 +1,11 @@
-/* .svg-anim{
+.svg-anim-js{
     >g{
         display:none;
         &.show{
             display: block;
         }
     }
-} */
+}
 .svg-anim-line{
     fill: none;
     stroke: #fff;
