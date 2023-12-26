@@ -189,7 +189,8 @@ const _Screen = function(){
     let noiseFilter;
     let pixelateFilter;
 
-    this.Face;
+    let _face;
+    this.Face = ()=>{return _face;}
 
     Init();
 
@@ -203,7 +204,8 @@ const _Screen = function(){
 
         PIXI.Assets.addBundle('face',{
             LeftEye_Default: '{{"/assets/images/home/computer/eyel.gif" | url}}',
-            RightEye_Default: '{{"/assets/images/home/computer/eyer.gif" | url}}'
+            RightEye_Default: '{{"/assets/images/home/computer/eyer.gif" | url}}',
+            Mouth_Default: '{{"/assets/images/home/computer/mouth.gif" | url}}'
         });
 
         BuildFace();
@@ -214,15 +216,15 @@ const _Screen = function(){
 
     async function BuildFace(){
         const bundle = await PIXI.Assets.loadBundle('face');
-        this.Face = new Face(bundle);
+        _face = new Face(bundle);
     }
 
     const Face = function(bundle){
-        const Eyes = {Left:{},Right:{},DefaultPosition:{x:60,y:90}};
-        const Mouth = {Emots:{}, DefaultPosition:{x:app.screen.width/2,y:120}};
+        this.Eyes = new Eyes();
+        this.Mouth = new Mouths();
 
-        Eyes.Left.Default = new Eye(bundle.LeftEye_Default,40,Eyes.DefaultPosition,false);
-        Eyes.Right.Default = new Eye(bundle.RightEye_Default,40,Eyes.DefaultPosition);
+        this.Eyes.AddEyes("default",bundle.LeftEye_Default, bundle.RightEye_Default,50);
+        this.Mouth.AddMouth("default",bundle.Mouth_Default, 75);
 
         this.Emot = function(name, time){
 
@@ -233,35 +235,165 @@ const _Screen = function(){
         this.MouthEmot = function(name,time){
 
         }
+
+        this.Render = (pos) =>{
+            this.Eyes.Render(pos);
+            this.Mouth.Render(pos);
+        }
     }
 
-    const Eye = function(_asset, _defaultSize, _defaultPosition, _isRight = true){
-        const asset = _asset;
-        const defaultPosition = _defaultPosition;
-        const defaultSize = _defaultSize;
-        const isRight = _isRight;
+    const Eyes = function(){
+        const DefaultPosition = {x:60,y:120}
+        const Left = {};
+        const Right = {};
 
-        let currentPosition = defaultPosition;
+        let lookPosition = {x:0,y:0};
+        let currentEyes = {left:"default",right:"default"};
+
+        this.AddEyes = function(key,left,right,size){
+            Left[key] = new Eye(left,size,false);
+            Right[key] = new Eye(right,size);
+
+            const lX = DefaultPosition.x;
+            const rX = app.screen.width - DefaultPosition.x;
+
+
+            Left[key].Init(lX,DefaultPosition.y);
+            Right[key].Init(rX,DefaultPosition.y);
+        }
+
+        this.Render = (pos)=>{
+            Left[currentEyes.left].MouseOffset(pos).Render();
+            Right[currentEyes.right].MouseOffset(pos).Render();
+        }
+    }
+
+    const Mouths = function(){
+        const DefaultPosition = {x:app.screen.width/2,y:170};
+        const Mouths = {};
+
+        let currentMouth = "default";
+
+        this.AddMouth = function(key,mouth,width){
+            Mouths[key] = new Mouth(mouth,width);
+            Mouths[key].Init(DefaultPosition.x,DefaultPosition.y);
+        }
+
+        this.Render = (pos) =>{
+            Mouths[currentMouth].MouseOffset(pos).Render();
+        }
+    }
+
+    const Mouth = function(_asset,_width){
+        const asset = _asset;
+        const width = _width;
+
+        let defaultPosition = {x:-1000,y:-1000};
+        let currentPosition = {x:-1000,y:-1000};
+        let offsetPosition = {x:0,y:0};
+        let jitterPosition = {x:0,y:0};
+
+        let jitterTime = Time.now;
+        let jitterDelta = 0;
+
         asset.anchor.set(0.5);
+
         containers.face.addChild(asset);
 
-        this.SetPosition = function(){
-            asset.y = defaultPosition.y;
+        this.Init = function(x,y){
+            asset.width = width;
+            asset.height = width/4;
 
-            if(isRight){
-                asset.x = app.screen.width - defaultPosition.x;
-            }else{
-                asset.x = defaultPosition.x;
+            defaultPosition.x = x;
+            defaultPosition.y = y;
+        }
+
+        this.MouseOffset = (pos) =>{
+            let x = Mouse.x - pos.x;
+            let y = Mouse.y - pos.y;
+            console.log(x,y);
+
+            offsetPosition.x = x/25;
+            offsetPosition.y = y/12;
+            return this;
+        }
+
+        this.Render = function(){
+            Jitter();
+            asset.x = defaultPosition.x + offsetPosition.x + jitterPosition.x;
+            asset.y = defaultPosition.y + offsetPosition.y + jitterPosition.y;
+        }
+
+                function Jitter(){
+            jitterDelta += (Time.now - jitterTime);
+            jitterTime = Time.now;
+            if(jitterDelta >= 1000/20){
+                jitterPosition.x = Math.random() * 4 - 2;
+                jitterPosition.y = Math.random() * 4 - 2;
+                jitterDelta = 0;
             }
         }
+    }
 
-        this.SetScale = function(){
+    const Eye = function(_asset, _defaultSize, _isRight = true){
+        const asset = _asset;
+        const defaultSize = _defaultSize;
+        const isRight = _isRight;
+        const yOffset = -100;
+        const xOffset = 80;
+
+        let defaultPosition = {x:-1000,y:-1000};
+        let currentPosition = {x:-1000,y:-1000};
+        let offsetPosition = {x:0,y:0};
+        let jitterPosition = {x:0,y:0};
+
+        let jitterTime = Time.now;
+        let jitterDelta = 0;
+
+        asset.anchor.set(0.5);
+
+        containers.face.addChild(asset);
+
+        this.Init = function(x,y){
+            defaultPosition.x = x;
+            defaultPosition.y = y;
+            currentPosition = defaultPosition;
+
             asset.width = defaultSize;
-            asset.height = defaultSize;
+            asset.height = defaultSize/1.2;
+
+            //this.SetPosition();
         }
 
-        this.SetPosition();
-        this.SetScale();
+        this.MouseOffset = (pos) =>{
+            let x = (Mouse.x - pos.x - (isRight ? xOffset : (-1*xOffset))) / 1;
+            let y = (Mouse.y - pos.y - yOffset) / 1;
+            console.log(x,y);
+
+            offsetPosition.x = x/25;
+            offsetPosition.y = y/10;
+            return this;
+        }
+
+        this.Render = () => {
+            Jitter();
+            asset.x = defaultPosition.x + jitterPosition.x + offsetPosition.x;
+            asset.y = defaultPosition.y + jitterPosition.y + offsetPosition.y;
+        }
+
+        this.Visible = (v) =>{
+            asset.visible = v;
+        }
+
+        function Jitter(){
+            jitterDelta += (Time.now - jitterTime);
+            jitterTime = Time.now;
+            if(jitterDelta >= 1000/20){
+                jitterPosition.x = Math.random() * 4 - 2;
+                jitterPosition.y = Math.random() * 4 - 2;
+                jitterDelta = 0;
+            }
+        }
     }
 
     function BuildFilters(){
@@ -270,11 +402,11 @@ const _Screen = function(){
         pixelateFilter = new PixelateFilter();
 
         crtFilter.lineContrast = .3;
-        crtFilter.lineWidth = 3
+        crtFilter.lineWidth = 2
         crtFilter.vignettingAlpha = .6;
         crtFilter.vignettingBlur = .5;
 
-        pixelateFilter.size = 3;
+        pixelateFilter.size = 2.4;
 
         setInterval(()=>{
             crtFilter.time += 1;
@@ -284,16 +416,12 @@ const _Screen = function(){
 
     async function BuildContainers(){
         app.stage.filters = [crtFilter, pixelateFilter];
+
         const graphics_background = new PIXI.Graphics();
         graphics_background.beginFill(0x664799);
         graphics_background.drawRect(0, 0, app.view.width, app.view.height);
         graphics_background.endFill();
-
-
-        const face = await PIXI.Assets.loadBundle('face');
         containers.background.addChild(graphics_background);
-        //containers.background.addChild(Face.Eyes.Left);
-        //containers.background.addChild(Face.Eyes.Right);
 
         const graphics_static = new PIXI.Graphics();
         graphics_static.beginFill(0x999999);
@@ -311,18 +439,6 @@ const _Screen = function(){
 
         return c;
     }
-    
-    function ConfigureEyes(l,r){
-        l.width= 50;
-        l.height = 50;
-        r.width= 50;
-        r.height = 50;
-
-        l.x = app.screen.width - 50 - 30;
-        l.y = 75;
-        r.y = 75;
-        r.x = 30;
-    }
 
     this.ShowStatic = function(){
         containers.static.visible = true;
@@ -336,7 +452,7 @@ const _Screen = function(){
     }
 
     this.Render = function(pos){
-        
+        _face.Render(pos);
     }
 
 }
