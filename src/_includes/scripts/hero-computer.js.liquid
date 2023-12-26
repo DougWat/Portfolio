@@ -127,15 +127,6 @@ const HeroComputer = function(){
         let noiseFilter;
         let pixelateFilter;
 
-        let Face = null;
-
-        const _Face = async function(){
-            this.bundle = await PIXI.Assets.loadBundle('face');
-            this.Eyes = {};
-            this.Eyes.Left = this.bundle.LeftEye;
-            this.Eyes.Right = this.bundle.RightEye;
-        }
-
         Init(300);
 
         function Init(w){
@@ -152,11 +143,8 @@ const HeroComputer = function(){
                 RightEye: '{{"/assets/images/home/computer/eyer.gif" | url}}'
             });
 
-            BuildFace();
-
             BuildFilters();
             BuildContainers();
-            BuildFace();
 
             TextureInit();
 
