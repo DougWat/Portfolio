@@ -9,9 +9,10 @@ import { GLTFLoader } from 'GLTFLoader';
 import {CRTFilter} from 'pixifilterCrt';
 import {PixelateFilter} from 'pixifilterPixelate';
 
-let heroComputer;
+let HeroComputer;
+let Screen;
 
-const HeroComputer = function(){
+const _HeroComputer = function(){
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera( 60, 1, .01, 10 );
     const renderer = new THREE.WebGLRenderer({alpha:true,antialias:true});
@@ -24,8 +25,6 @@ const HeroComputer = function(){
     let monitorMesh;
     let screenMesh;
     let chassisMesh;
-
-    let computerScreen;
 
     let canvasPos = {};
 
@@ -45,7 +44,6 @@ const HeroComputer = function(){
         if(currentFrameTime < frameTimeTarget){requestAnimationFrame( Animate ); return;}
 
         Logic();
-        screenMesh.material.emissiveMap.needsUpdate = true;
         renderer.render( scene, camera );
         requestAnimationFrame( Animate );
         currentFrameTime = 0;
@@ -67,13 +65,12 @@ const HeroComputer = function(){
         BuildLights();
         await AddComputerModel();
         ConfigComputerModel();
-        computerScreen = new ComputerScreen();
         Animate();
 
         $(element).on('mousedown',(e)=>{
             currentRot.x += (Math.floor(Math.random() - .5) + .5) * .5;
             currentRot.y += (Math.floor(Math.random() - .5) + .5) * .5;
-            computerScreen.ShowStatic();
+            Screen.ShowStatic();
         });
     }
 
@@ -116,136 +113,6 @@ const HeroComputer = function(){
                 chassisMesh = n;
             }
         }});
-    }
-
-    const ComputerScreen = function(){
-        let app;
-        const masterContainer = new PIXI.Container();
-        const containers = {};
-        
-        let crtFilter;
-        let noiseFilter;
-        let pixelateFilter;
-
-        let Face = null;
-
-        const _Face = async function(){
-            this.bundle = await PIXI.Assets.loadBundle('face');
-            this.Eyes = {};
-            this.Eyes.Left = this.bundle.LeftEye;
-            this.Eyes.Right = this.bundle.RightEye;
-        }
-
-        Init(300);
-
-        function Init(w){
-            app = new PIXI.Application({width: w, height: w*.84,background: '#1099bb'});
-            document.body.appendChild(app.view);
-            app.stage.addChild(masterContainer);
-
-            containers.background = AddContainer(true);
-            containers.face = AddContainer(true);
-            containers.static = AddContainer();
-
-            PIXI.Assets.addBundle('face',{
-                LeftEye: '{{"/assets/images/home/computer/eyel.gif" | url}}',
-                RightEye: '{{"/assets/images/home/computer/eyer.gif" | url}}'
-            });
-
-            BuildFace();
-
-            BuildFilters();
-            BuildContainers();
-            BuildFace();
-
-            TextureInit();
-
-        }
-
-        function AddContainer(visible = false){
-            const c = new PIXI.Container();
-            c.visible = visible;
-            masterContainer.addChild(c);
-
-            return c;
-        }
-        
-        function BuildFilters(){
-            crtFilter = new CRTFilter();
-            noiseFilter = new PIXI.NoiseFilter();
-            pixelateFilter = new PixelateFilter();
-
-            crtFilter.lineContrast = .3;
-            crtFilter.lineWidth = 3
-            crtFilter.vignettingAlpha = .6;
-            crtFilter.vignettingBlur = .5;
-
-            pixelateFilter.size = 3;
-
-            setInterval(()=>{
-                crtFilter.time += 1;
-                noiseFilter.seed = Math.random();
-            },33);
-        }
-
-        async function BuildContainers(){
-            app.stage.filters = [crtFilter, pixelateFilter];
-            const graphics_background = new PIXI.Graphics();
-            graphics_background.beginFill(0x664799);
-            graphics_background.drawRect(0, 0, app.view.width, app.view.height);
-            graphics_background.endFill();
-
-
-            const face = await PIXI.Assets.loadBundle('face');
-            ConfigureEyes(face.LeftEye, face.RightEye);
-            console.log(Face);
-            containers.background.addChild(graphics_background);
-            containers.background.addChild(Face.Eyes.Left);
-            containers.background.addChild(Face.Eyes.Right);
-
-            const graphics_static = new PIXI.Graphics();
-            graphics_static.beginFill(0x999999);
-            graphics_static.drawRect(0, 0, app.view.width, app.view.height);
-            graphics_static.endFill();
-
-            containers.static.addChild(graphics_static);
-            containers.static.filters = [noiseFilter];
-        }
-
-        function BuildFace(){
-            Face = new _Face();
-        }
-
-
-        function ConfigureEyes(l,r){
-            l.width= 50;
-            l.height = 50;
-            r.width= 50;
-            r.height = 50;
-
-            l.x = app.screen.width - 50 - 30;
-            l.y = 75;
-            r.y = 75;
-            r.x = 30;
-        }
-
-        function TextureInit(){
-            var texture = new THREE.CanvasTexture(app.view);
-            texture.encoding = THREE.sRGBEncoding;
-            texture.flipY = false;
-            screenMesh.material.map = texture;
-
-            screenMesh.material.emissive = new THREE.Color(0xffffff);
-            screenMesh.material.emissiveMap = texture;
-            screenMesh.material.emissiveIntensity = 1;
-        }
-
-        this.ShowStatic = function(){
-            containers.static.visible = true;
-            setTimeout(()=>{
-                containers.static.visible =false;
-            },200)
-        }
     }
 
     function AddLight(color, intensity, position){
@@ -296,13 +163,143 @@ const HeroComputer = function(){
         if(Math.abs(x) < .0001){return current;}
         return current - (x/40 * (currentFrameTime * 300));
     }
+
+    this.ApplyFaceCanvas = (view) =>{
+        const texture = new THREE.CanvasTexture(view);
+        texture.encoding = THREE.sRGBEncoding;
+        texture.flipY = false;
+        screenMesh.material.map = texture;
+
+        screenMesh.material.emissive = new THREE.Color(0xffffff);
+        screenMesh.material.emissiveMap = texture;
+        screenMesh.material.emissiveIntensity = 1;
+
+        setInterval(()=>{
+            screenMesh.material.emissiveMap.needsUpdate = true;
+
+        },200);
+    }
 }
 
-const Face = function(){
+const _Screen = function(){
+    const app = new PIXI.Application({width: 300, height: 300*.84,background: '#1099bb'});
+    const masterContainer = new PIXI.Container();
+    const containers = {};
     
+    let crtFilter;
+    let noiseFilter;
+    let pixelateFilter;
+
+    const _Face = async function(){
+        this.bundle = await PIXI.Assets.loadBundle('face');
+        this.Eyes = {};
+        this.Eyes.Left = this.bundle.LeftEye;
+        this.Eyes.Right = this.bundle.RightEye;
+    }
+
+    Init();
+
+    function Init(){
+        document.body.appendChild(app.view);
+        app.stage.addChild(masterContainer);
+
+        containers.background = AddContainer(true);
+        containers.face = AddContainer(true);
+        containers.static = AddContainer();
+
+        PIXI.Assets.addBundle('face',{
+            LeftEye: '{{"/assets/images/home/computer/eyel.gif" | url}}',
+            RightEye: '{{"/assets/images/home/computer/eyer.gif" | url}}'
+        });
+
+        BuildFace();
+        BuildFilters();
+        BuildContainers();
+
+    }
+
+    function BuildFace(){
+
+    }
+
+    function BuildFilters(){
+        crtFilter = new CRTFilter();
+        noiseFilter = new PIXI.NoiseFilter();
+        pixelateFilter = new PixelateFilter();
+
+        crtFilter.lineContrast = .3;
+        crtFilter.lineWidth = 3
+        crtFilter.vignettingAlpha = .6;
+        crtFilter.vignettingBlur = .5;
+
+        pixelateFilter.size = 3;
+
+        setInterval(()=>{
+            crtFilter.time += 1;
+            noiseFilter.seed = Math.random();
+        },33);
+    }
+
+    async function BuildContainers(){
+        app.stage.filters = [crtFilter, pixelateFilter];
+        const graphics_background = new PIXI.Graphics();
+        graphics_background.beginFill(0x664799);
+        graphics_background.drawRect(0, 0, app.view.width, app.view.height);
+        graphics_background.endFill();
+
+
+        const face = await PIXI.Assets.loadBundle('face');
+        containers.background.addChild(graphics_background);
+        //containers.background.addChild(Face.Eyes.Left);
+        //containers.background.addChild(Face.Eyes.Right);
+
+        const graphics_static = new PIXI.Graphics();
+        graphics_static.beginFill(0x999999);
+        graphics_static.drawRect(0, 0, app.view.width, app.view.height);
+        graphics_static.endFill();
+
+        containers.static.addChild(graphics_static);
+        containers.static.filters = [noiseFilter];
+    }
+
+    function AddContainer(visible = false){
+        const c = new PIXI.Container();
+        c.visible = visible;
+        masterContainer.addChild(c);
+
+        return c;
+    }
+    
+    function ConfigureEyes(l,r){
+        l.width= 50;
+        l.height = 50;
+        r.width= 50;
+        r.height = 50;
+
+        l.x = app.screen.width - 50 - 30;
+        l.y = 75;
+        r.y = 75;
+        r.x = 30;
+    }
+
+    this.ShowStatic = function(){
+        containers.static.visible = true;
+        setTimeout(()=>{
+            containers.static.visible =false;
+        },200)
+    }
+
+    this.GetView = function(){
+        return app.view;
+    }
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
-    heroComputer = new HeroComputer();
+    Screen = new _Screen();
+    HeroComputer = new _HeroComputer();
+    setTimeout(()=>{
+        HeroComputer.ApplyFaceCanvas(Screen.GetView());
+        document.body.appendChild(Screen.GetView());
+    },2000)
 });
 </script>
