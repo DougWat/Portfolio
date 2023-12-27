@@ -75,6 +75,7 @@ const _HeroComputer = function(){
             currentRot.x += (Math.floor(Math.random() - .5) + .5) * .5;
             currentRot.y += (Math.floor(Math.random() - .5) + .5) * .5;
             Screen.ShowStatic();
+            Screen.Face().Emot('blink',300);
         });
     }
 
@@ -205,6 +206,8 @@ const _Screen = function(){
         PIXI.Assets.addBundle('face',{
             LeftEye_Default: '{{"/assets/images/home/computer/eyel.gif" | url}}',
             RightEye_Default: '{{"/assets/images/home/computer/eyer.gif" | url}}',
+            LeftEye_Blink: '{{"/assets/images/home/computer/eyel_blink.gif" | url}}',
+            RightEye_Blink: '{{"/assets/images/home/computer/eyer_blink.gif" | url}}',
             Mouth_Default: '{{"/assets/images/home/computer/mouth.gif" | url}}'
         });
 
@@ -223,11 +226,18 @@ const _Screen = function(){
         this.Eyes = new Eyes();
         this.Mouth = new Mouths();
 
-        this.Eyes.AddEyes("default",bundle.LeftEye_Default, bundle.RightEye_Default,50);
+        this.Eyes.AddEyes("default",bundle.LeftEye_Default, bundle.RightEye_Default,50,50);
+        this.Eyes.AddEyes("blink",bundle.LeftEye_Blink, bundle.RightEye_Blink,50,20);
+
+        this.Eyes.SetEyes("default",true,true,true);
+
         this.Mouth.AddMouth("default",bundle.Mouth_Default, 75);
 
         this.Emot = function(name, time){
-
+            this.Eyes.SetEyes(name,true,true,true);
+            setTimeout(()=>{
+                this.Eyes.SetEyes('default',true,true,true);
+            },time);
         }
         this.EyeEmot = function(name,time){
 
@@ -240,6 +250,12 @@ const _Screen = function(){
             this.Eyes.Render(pos);
             this.Mouth.Render(pos);
         }
+
+        let randBlink = Math.random() * 8000 + 500;
+        setInterval(()=>{
+            this.Emot('blink',100);
+            randBlink = Math.random() * 8000 + 500;
+        },randBlink);
     }
 
     const Eyes = function(){
@@ -250,9 +266,10 @@ const _Screen = function(){
         let lookPosition = {x:0,y:0};
         let currentEyes = {left:"default",right:"default"};
 
-        this.AddEyes = function(key,left,right,size){
-            Left[key] = new Eye(left,size,false);
-            Right[key] = new Eye(right,size);
+
+        this.AddEyes = function(key,left,right,w,h){
+            Left[key] = new Eye(left,w,h,false);
+            Right[key] = new Eye(right,w,h);
 
             const lX = DefaultPosition.x;
             const rX = app.screen.width - DefaultPosition.x;
@@ -266,6 +283,21 @@ const _Screen = function(){
             Left[currentEyes.left].MouseOffset(pos).Render();
             Right[currentEyes.right].MouseOffset(pos).Render();
         }
+
+        this.SetEyes = (key,value,left,right) =>{
+            if(left){
+                Left[currentEyes.left].Visible(false)
+                Left[key].Visible(value)
+                currentEyes.left = key;
+            }
+            if(right){
+                Right[currentEyes.right].Visible(false)
+                Right[key].Visible(value)
+                currentEyes.right = key;
+            }
+
+        }
+
     }
 
     const Mouths = function(){
@@ -280,6 +312,7 @@ const _Screen = function(){
         }
 
         this.Render = (pos) =>{
+            
             Mouths[currentMouth].MouseOffset(pos).Render();
         }
     }
@@ -335,9 +368,9 @@ const _Screen = function(){
         }
     }
 
-    const Eye = function(_asset, _defaultSize, _isRight = true){
+    const Eye = function(_asset, _w,_h, _isRight = true){
         const asset = _asset;
-        const defaultSize = _defaultSize;
+        const defaultSize = {x:_w,y:_h};
         const isRight = _isRight;
         const yOffset = -100;
         const xOffset = 80;
@@ -354,13 +387,15 @@ const _Screen = function(){
 
         containers.face.addChild(asset);
 
+        asset.visible = false;
+
         this.Init = function(x,y){
             defaultPosition.x = x;
             defaultPosition.y = y;
             currentPosition = defaultPosition;
 
-            asset.width = defaultSize;
-            asset.height = defaultSize/1.2;
+            asset.width = defaultSize.x;
+            asset.height = defaultSize.y;
 
             //this.SetPosition();
         }
@@ -368,7 +403,6 @@ const _Screen = function(){
         this.MouseOffset = (pos) =>{
             let x = (Mouse.x - pos.x - (isRight ? xOffset : (-1*xOffset))) / 1;
             let y = (Mouse.y - pos.y - yOffset) / 1;
-            console.log(x,y);
 
             offsetPosition.x = x/25;
             offsetPosition.y = y/10;
@@ -380,7 +414,6 @@ const _Screen = function(){
             asset.x = defaultPosition.x + jitterPosition.x + offsetPosition.x;
             asset.y = defaultPosition.y + jitterPosition.y + offsetPosition.y;
         }
-
         this.Visible = (v) =>{
             asset.visible = v;
         }
