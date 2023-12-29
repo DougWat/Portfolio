@@ -1,7 +1,7 @@
 .button{
     display: inline-block;
     background-color:theme('textColor.dark');
-    padding: 17px 37px;
+    padding: 14px 37px;
     border-radius: 100px;
     @apply text-light;
     transition: background-color 300ms;

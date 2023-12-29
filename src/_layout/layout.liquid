@@ -24,6 +24,10 @@ title: Doug Watro
     <script src="https://pixijs.download/release/pixi.js"></script>
     <script src="{{'/assets/scripts/pixi-gif.js' | url}}"></script>
     <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script type="importmap">
       {
         "imports": {
@@ -72,9 +76,13 @@ title: Doug Watro
 
     </script>
   </head>
-  <body>
+  <body id="Page-{{page.fileSlug}}">
     {% comment %} {% include 'components/navbar' %} {% endcomment %}
     {{content}}
     {% include 'components/footer' %}
   </body>
+  <script>
+  // Accepts any class name
+  var rellax = new Rellax('.rellax');
+</script>
 </html>

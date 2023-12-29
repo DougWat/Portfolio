@@ -23,14 +23,18 @@ module.exports = {
         colors:{
           primary:"#4DE191",
           "primary-light":"#08FDD8",
-          secondary:"#14213D"
+          secondary:"#14213D",
+          "tmb-green":"#DFFF00",
+          "tmb-blue":"#20F1FA"
         },
         backgroundColor:{
           green:'#C6F0C5',
           'light-green':'#D6F3D5',
           dark:'#1D1D1D',
           gray:'#847979',
-          light:"#f5f5f5;"
+          light:"#f5f5f5;",
+          "tmb-dark-grey":"#111111",
+          "tmb-light-grey":"#1E1E1E"
         },
         textColor:{
           light:'#D5D5D5',

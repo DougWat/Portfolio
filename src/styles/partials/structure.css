@@ -1,9 +1,12 @@
 /* Structure */
 .section-padding{
-  padding: 80px 60px;
+  --base-padding-v:80px;
+  --base-padding-h:60px;
+  padding: var(--base-padding-h) var(--base-padding-v);
 
   @screen md{
-    padding: 30px;
+    --base-padding-v:30px;
+    --base-padding-h:30px;
   }
 }
 

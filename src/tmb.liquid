@@ -1,0 +1,120 @@
+---
+layout: layout.liquid
+title: Trusted Media Brands
+permalink: /tmb/
+---
+
+<section id="TMBHero" class="section-padding"> 
+    <div class="bg">
+        <img src="{{'/assets/images/tmb/bg.jpg' | url}}" class="rellax" data-rellax-speed="-10"></img>
+        <div class="grad">
+        </div>
+    </div>
+    <div class="container content">
+        <div class="copy-block text-light rellax" data-rellax-speed="2">
+            <h1><span class="text-tmb-green">Trusted</span><br/><span class="text-tmb-blue">Media</span> Brands</h1>
+            <p class="main-copy h6">Trusted Media Brands sought a modern, motion-forward experience for digital consumers to interact with their brand. It was developed using a headless Wordpress CMS and a React + PostCSS frontend.</p>
+            <p class="tags">Javascript, HTML, CSS, PostCSS, Tailwind, 11ty, Liquid, Wordpress</p>
+            <a class="button">view live site</a>
+        </div>
+        <div class="slider-block">
+            <div class="tmb-hero-slider swiper">
+                <div class="swiper-wrapper">
+                    <div class="tmb-hero-slide swiper-slide">
+                        <video muted autoplay loop class="image-cover">
+                            <source src="{{ '/assets/video/tmb/hero/Award.webm' }}" type="video/webm">
+                        </video>
+                    </div>
+                                        <div class="tmb-hero-slide swiper-slide">
+                        <video muted autoplay loop class="image-cover">
+                            <source src="{{ '/assets/video/tmb/hero/Dots.webm' }}" type="video/webm">
+                        </video>
+                    </div>
+                                        <div class="tmb-hero-slide swiper-slide">
+                        <video muted autoplay loop class="image-cover">
+                            <source src="{{ '/assets/video/tmb/hero/Cloud.webm' }}" type="video/webm">
+                        </video>
+                    </div>
+                                        <div class="tmb-hero-slide swiper-slide">
+                        <video muted autoplay loop class="image-cover">
+                            <source src="{{ '/assets/video/tmb/hero/Reach.webm' }}" type="video/webm">
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <div class="tmb-hero-controls">
+                <div class="tmb-hero-pagination">
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-padding-large bg-tmb-light-grey">
+    <div class="container text-light">
+        <h3 class="mb-8">My Role</h3>
+        <p class="h6 mb-8">I worked with the design team to rapidly prototype the new <span class="font-medium">Trusted Media Brands</span> website. The initial prototype was built in a static environment using <span class="font-medium">11ty</span>. When reviewed and approved internally, the static code was converted for use with the headless <span class="font-medium">Wordpress CMS + React</span> stack built by the back-end dev.</p>
+        <p class="h6">Content intended on each template page was expected to be varied, and so much care was put into building an implementation of the design that accounted for existence, or lack-thereof, of content on each page.</p>
+    </div>
+</section>
+<section id="TMBInteractions"class="section-padding-large bg-tmb-dark-grey">
+    <div class="bg rellax" data-rellax-percentage="0.5" data-rellax-speed="-10">
+        <img src="{{'/assets/images/tmb/bg.jpg' | url}}" ></img>
+    </div>
+    <div class="container text-light relative">
+        <h3 class="mb-8">Interactions</h3>
+        <p class="h6 mb-8">Great care was placed in creating eye catching and performant interactions and animations. I worked alongside the design team to bring their ideas to life in a scope and performance friendly way.</p>
+        <div class="tmb-interaction-wrapper">
+            <div class="tmb-interaction-item-full">
+                <div class="info-bottom">
+                    <div class="grad"></div>
+                    <p class="tag">Pure CSS</p>
+                    <div class="info">
+                        <p>Nested CSS 3D transforms were used to create a responsive 3D grid. A dotted stroke is applied to an svg arch, and is animated using CSS keyframes. CSS variables are used to easily change the gradient to reflect the brand colors via a varible in the CMS.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tmb-interaction-item-half">
+                                <div class="info-bottom">
+                    <div class="grad"></div>
+                    <p class="tag">Pure CSS</p>
+                    <div class="info">
+                        <p>Nested CSS 3D transforms were used to create a responsive 3D grid. A dotted stroke is applied to an svg arch, and is animated using CSS keyframes. CSS variables are used to easily change the gradient to reflect the brand colors via a varible in the CMS.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tmb-interaction-item-half">
+                                <div class="info-bottom">
+                    <div class="grad"></div>
+                    <p class="tag">Pure CSS</p>
+                    <div class="info">
+                        <p>Nested CSS 3D transforms were used to create a responsive 3D grid. A dotted stroke is applied to an svg arch, and is animated using CSS keyframes. CSS variables are used to easily change the gradient to reflect the brand colors via a varible in the CMS.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function TMBHero(){
+        const Hero = $("#TMBHero");
+        const HeroSlider = new Swiper($(Hero).find('.swiper')[0],{
+              direction: 'vertical',
+                loop: true,
+                slidesPerView: 2.5,
+                spaceBetween: 40,
+                centeredSlides:true,
+                autoplay:true,
+
+                pagination:{
+                    el: $(Hero).find('.tmb-hero-pagination')[0],
+                bulletClass:"tmb-hero-bullet",
+                bulletActiveClass:"active",
+                bulletElement:"div",
+                clickable:true
+                }
+        });
+    }
+    document.addEventListener("DOMContentLoaded",TMBHero);
+
+</script>

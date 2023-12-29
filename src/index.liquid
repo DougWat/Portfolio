@@ -58,7 +58,7 @@ title: Home Page
             <div class="portfolio-item-copy">
                 <h2 class="mb-2">Trusted<br/>Media Brands<div class="line">{% include 'svganim/line', class:"svg-line"%}</div></h2>
                 <h5 class="mb-16">(Reader’s Digest, Birds & Blooms, etc.)</h5>
-                <a class="button button-outlined button-larger">check it out</a>
+                <a class="button button-outlined button-larger" href="{{'/tmb' | url}}">check it out</a>
             </div>
             <div class="portfolio-item-image-block rotato">
                 <div class="portfolio-item-image-wrapper rotato-target" style="--rotato-deg:20deg">
@@ -183,7 +183,3 @@ title: Home Page
 {% for i in (1..10)%}
 
 {% endfor %}
-<script>
-  // Accepts any class name
-  var rellax = new Rellax('.rellax');
-</script>
