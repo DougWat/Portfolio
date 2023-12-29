@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>
+    Trusted Media Brands
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/Portfolio/assets/styles/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/Portfolio/assets/scripts/pathtrace.js"></script>
+    <script src="/Portfolio/assets/scripts/ScrollTrigger.min.js"></script>
+    <script src="/Portfolio/assets/scripts/ScrollTriggerSetup.js"></script>
+    <script src="/Portfolio/assets/scripts/rotato.js"></script>
+    <script src="https://pixijs.download/release/pixi.js"></script>
+    <script src="/Portfolio/assets/scripts/pixi-gif.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "EffectComposer": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/EffectComposer.js",
+          "GlitchPass": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/GlitchPass.js",
+          "RenderPass": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/RenderPass.js",
+          "OutputPass": "https://unpkg.com/three@0.160.0/examples/jsm/postprocessing/OutputPass.js",
+          "GLTFLoader":"https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js",
+          "pixifilterCrt" : "https://cdn.jsdelivr.net/npm/@pixi/filter-crt@5.1.1/+esm",
+          "pixifilterPixelate" : "https://cdn.jsdelivr.net/npm/@pixi/filter-pixelate@5.1.1/+esm"
+        }
+      }
+    </script>
+    <script>
+    let Mouse = {x:0,y:0};
+    const time = function(){
+      this.then = Date.now();
+      this.now  = Date.now();
+      this.intDelta;
+      this.delta = 0;
+
+      this.NextFrame = function(){
+        this.then = this.now;
+        this.now = Date.now();
+        this.intDelta = (this.now - this.then);
+        this.delta = this.intDelta/1000;
+      }
+
+    }
+      const Time = new time;
+      
+      (function AdvTime(){
+        Time.NextFrame();
+        requestAnimationFrame(AdvTime);
+      })();
+
+      (function ReportMousePos(){
+        document.onmousemove = (e)=>{
+          Mouse.x = e.pageX;
+          Mouse.y = e.pageY;
+        }
+      })();
+
+      
+
+    </script>
+  </head>
+  <body id="Page-tmb">
+    
+    
+<section id="TMBHero" class="section-padding"> 
+    <div class="bg">
+        <img src="/Portfolio/assets/images/tmb/bg.jpg" class="rellax" data-rellax-speed="-10"></img>
+        <div class="grad">
+        </div>
+    </div>
+    <div class="container content">
+        <div class="copy-block text-light rellax" data-rellax-speed="2">
+            <h1><span class="text-tmb-green">Trusted</span><br/><span class="text-tmb-blue">Media</span> Brands</h1>
+            <p class="main-copy h6">Trusted Media Brands sought a modern, motion-forward experience for digital consumers to interact with their brand. It was developed using a headless Wordpress CMS and a React + PostCSS frontend.</p>
+            <p class="tags">Javascript, HTML, CSS, PostCSS, Tailwind, 11ty, Liquid, Wordpress</p>
+            <a class="button">view live site</a>
+        </div>
+        <div class="slider-block">
+            <div class="tmb-hero-slider swiper">
+                <div class="swiper-wrapper">
+                    <div class="tmb-hero-slide swiper-slide">
+                        <video muted autoplay loop class="image-cover">
+                            <source src="/assets/video/tmb/hero/Award.webm" type="video/webm">
+                        </video>
+                    </div>
+                                        <div class="tmb-hero-slide swiper-slide">
+                        <video muted autoplay loop class="image-cover">
+                            <source src="/assets/video/tmb/hero/Dots.webm" type="video/webm">
+                        </video>
+                    </div>
+                                        <div class="tmb-hero-slide swiper-slide">
+                        <video muted autoplay loop class="image-cover">
+                            <source src="/assets/video/tmb/hero/Cloud.webm" type="video/webm">
+                        </video>
+                    </div>
+                                        <div class="tmb-hero-slide swiper-slide">
+                        <video muted autoplay loop class="image-cover">
+                            <source src="/assets/video/tmb/hero/Reach.webm" type="video/webm">
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <div class="tmb-hero-controls">
+                <div class="tmb-hero-pagination">
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-padding-large bg-tmb-light-grey">
+    <div class="container text-light">
+        <h3 class="mb-8">My Role</h3>
+        <p class="h6 mb-8">I worked with the design team to rapidly prototype the new <span class="font-medium">Trusted Media Brands</span> website. The initial prototype was built in a static environment using <span class="font-medium">11ty</span>. When reviewed and approved internally, the static code was converted for use with the headless <span class="font-medium">Wordpress CMS + React</span> stack built by the back-end dev.</p>
+        <p class="h6">Content intended on each template page was expected to be varied, and so much care was put into building an implementation of the design that accounted for existence, or lack-thereof, of content on each page.</p>
+    </div>
+</section>
+<section id="TMBInteractions"class="section-padding-large bg-tmb-dark-grey">
+    <div class="bg rellax" data-rellax-percentage="0.5" data-rellax-speed="-10">
+        <img src="/Portfolio/assets/images/tmb/bg.jpg" ></img>
+    </div>
+    <div class="container text-light relative">
+        <h3 class="mb-8">Interactions</h3>
+        <p class="h6 mb-8">Great care was placed in creating eye catching and performant interactions and animations. I worked alongside the design team to bring their ideas to life in a scope and performance friendly way.</p>
+        <div class="tmb-interaction-wrapper">
+            <div class="tmb-interaction-item-full">
+                <div class="info-bottom">
+                    <div class="grad"></div>
+                    <p class="tag">Pure CSS</p>
+                    <div class="info">
+                        <p>Nested CSS 3D transforms were used to create a responsive 3D grid. A dotted stroke is applied to an svg arch, and is animated using CSS keyframes. CSS variables are used to easily change the gradient to reflect the brand colors via a varible in the CMS.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tmb-interaction-item-half">
+                                <div class="info-bottom">
+                    <div class="grad"></div>
+                    <p class="tag">Pure CSS</p>
+                    <div class="info">
+                        <p>Nested CSS 3D transforms were used to create a responsive 3D grid. A dotted stroke is applied to an svg arch, and is animated using CSS keyframes. CSS variables are used to easily change the gradient to reflect the brand colors via a varible in the CMS.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tmb-interaction-item-half">
+                                <div class="info-bottom">
+                    <div class="grad"></div>
+                    <p class="tag">Pure CSS</p>
+                    <div class="info">
+                        <p>Nested CSS 3D transforms were used to create a responsive 3D grid. A dotted stroke is applied to an svg arch, and is animated using CSS keyframes. CSS variables are used to easily change the gradient to reflect the brand colors via a varible in the CMS.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function TMBHero(){
+        const Hero = $("#TMBHero");
+        const HeroSlider = new Swiper($(Hero).find('.swiper')[0],{
+              direction: 'vertical',
+                loop: true,
+                slidesPerView: 2.5,
+                spaceBetween: 40,
+                centeredSlides:true,
+                autoplay:true,
+
+                pagination:{
+                    el: $(Hero).find('.tmb-hero-pagination')[0],
+                bulletClass:"tmb-hero-bullet",
+                bulletActiveClass:"active",
+                bulletElement:"div",
+                clickable:true
+                }
+        });
+    }
+    document.addEventListener("DOMContentLoaded",TMBHero);
+
+</script>
+    <div class="">
+
+</div>
+
+  </body>
+  <script>
+  // Accepts any class name
+  var rellax = new Rellax('.rellax');
+</script>
+</html>
