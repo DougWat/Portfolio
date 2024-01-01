@@ -5,11 +5,12 @@ module.exports = function(eleventyConfig){
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/scripts");
   return{
+    pathPrefix: "/Portfolio/",
     dir: {
       input: "src",
       output: "dist",
       includes:"_includes",
-      layouts:"_layout"
+      layouts:"_layout",
     }
   }
 };
