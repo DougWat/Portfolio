@@ -87,7 +87,7 @@
             <h1><span class="text-tmb-green">Trusted</span><br/><span class="text-tmb-blue">Media</span> Brands</h1>
             <p class="main-copy h6">Trusted Media Brands sought a modern, motion-forward experience for digital consumers to interact with their brand. It was developed using a headless Wordpress CMS and a React + PostCSS frontend.</p>
             <p class="tags">Javascript, HTML, CSS, PostCSS, Tailwind, 11ty, Liquid, Wordpress</p>
-            <a class="button">view live site</a>
+            <a class="button" href="https://www.trustedmediabrands.com/" target="_blank">view live site</a>
         </div>
         <div class="slider-block">
             <div class="tmb-hero-slider swiper">
@@ -122,46 +122,51 @@
         </div>
     </div>
 </section>
-<section class="section-padding-large bg-tmb-light-grey">
-    <div class="container text-light">
+<section id="TMBRole" class="section-padding-large">
+    <div class="container text-black">
         <h3 class="mb-8">My Role</h3>
         <p class="h6 mb-8">I worked with the design team to rapidly prototype the new <span class="font-medium">Trusted Media Brands</span> website. The initial prototype was built in a static environment using <span class="font-medium">11ty</span>. When reviewed and approved internally, the static code was converted for use with the headless <span class="font-medium">Wordpress CMS + React</span> stack built by the back-end dev.</p>
         <p class="h6">Content intended on each template page was expected to be varied, and so much care was put into building an implementation of the design that accounted for existence, or lack-thereof, of content on each page.</p>
     </div>
 </section>
-<section id="TMBInteractions"class="section-padding-large bg-tmb-dark-grey">
-    <div class="bg rellax" data-rellax-percentage="0.5" data-rellax-speed="-10">
-        <img src="/Portfolio/assets/images/tmb/bg.jpg" ></img>
-    </div>
+<section id="TMBInteractions"class="section-padding-large">
+    
     <div class="container text-light relative">
-        <h3 class="mb-8">Interactions</h3>
-        <p class="h6 mb-8">Great care was placed in creating eye catching and performant interactions and animations. I worked alongside the design team to bring their ideas to life in a scope and performance friendly way.</p>
+        <h3 class="mb-8">Interaction Highlights</h3>
+        <p class="h6 mb-16">Great care was placed in creating eye catching and performant interactions and animations. I worked alongside the design team to bring their ideas to life in a scope and performance friendly way.</p>
         <div class="tmb-interaction-wrapper">
             <div class="tmb-interaction-item-full">
+                <div class="video">
+                    <video muted autoplay loop class="image-cover">
+                        <source src="/Portfolio/assets/video/tmb/reach.webm" type="video/webm">
+                    </video>
+                </div>
                 <div class="info-bottom">
-                    <div class="grad"></div>
-                    <p class="tag">Pure CSS</p>
-                    <div class="info">
-                        <p>Nested CSS 3D transforms were used to create a responsive 3D grid. A dotted stroke is applied to an svg arch, and is animated using CSS keyframes. CSS variables are used to easily change the gradient to reflect the brand colors via a varible in the CMS.</p>
-                    </div>
+                    <p class="tag">Pure CSS | 3D CSS and CSS variables</p>
+                    <p class="copy">Nested CSS 3D transforms were used to create a responsive 3D grid. A dotted stroke is applied to an svg arch, and is animated using CSS keyframes. CSS variables are used to easily change the gradient to reflect the brand colors via a varible in the CMS. Elements like the arch and impact point can be changed based on screensize using a CSS media query. Additionally, the CSS varibles used here are used throughout the page, things such as button colors and accent colors can be effected on a per-page basis by modifying a single set of variables.</p>
                 </div>
             </div>
             <div class="tmb-interaction-item-half">
-                                <div class="info-bottom">
-                    <div class="grad"></div>
-                    <p class="tag">Pure CSS</p>
-                    <div class="info">
-                        <p>Nested CSS 3D transforms were used to create a responsive 3D grid. A dotted stroke is applied to an svg arch, and is animated using CSS keyframes. CSS variables are used to easily change the gradient to reflect the brand colors via a varible in the CMS.</p>
-                    </div>
+                <div class="video">
+                    <video muted autoplay loop class="image-cover">
+                        <source src="/Portfolio/assets/video/tmb/data.webm" type="video/webm">
+                    </video>
+                </div>
+                <div class="info-bottom">
+                        <p class="tag">CSS + Light JS | CSS Keyframes With Some JS Help </p>
+                        <p class="copy">The graphic is a flexbox of spans. Each span is given a random CSS timing variable that controls the speed the span pulses. Every 2000ms 30 nodes are chosen at random and their colors are changed to a random color from a list. CSS was chosen over canvas for iteration speed, compatability, and scaling.</p>
                 </div>
             </div>
             <div class="tmb-interaction-item-half">
-                                <div class="info-bottom">
-                    <div class="grad"></div>
-                    <p class="tag">Pure CSS</p>
-                    <div class="info">
-                        <p>Nested CSS 3D transforms were used to create a responsive 3D grid. A dotted stroke is applied to an svg arch, and is animated using CSS keyframes. CSS variables are used to easily change the gradient to reflect the brand colors via a varible in the CMS.</p>
-                    </div>
+                <div class="video">
+                    <video muted autoplay loop class="image-cover">
+                        <source src="/Portfolio/assets/video/tmb/cloud.webm" type="video/webm">
+                    </video>
+                </div>
+                <div class="info-bottom">
+                        <p class="tag">Pure CSS | Fake Parallax With Offset Transition Timing</p>
+                        <p class="copy">Multiple layers of full sized, absolutly positioned divs overlay eachother. Each div contains a few positioned circles of video or colors. Each layer is given a sligtly different transition timing and starting scale. On hover, the layer scales are set to 1, and the different timings create a simple and performant parallaxing effect. Each circle can be repositioned to account for screen sizes.</p>
+                </div>
                 </div>
             </div>
         </div>
