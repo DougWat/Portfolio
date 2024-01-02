@@ -114,9 +114,13 @@
         }
     }
 }
+#TMBRole{
+    background-color: #e5ff3d;
+}
 #TMBInteractions{
     overflow:hidden;
     position: relative;
+    background-color: #0B0A0C;
     .bg{
         position: absolute;
         top:0;
@@ -144,33 +148,30 @@
     }
 }
 .tmb-interaction-wrapper{
-    --gap:40px;
+    --gap-h:60px;
+    --gap-v:80px;
     display: flex;
-    gap:var(--gap);
+    gap:var(--gap-v) var(--gap-h);
     flex-wrap: wrap;
 }
 [class|="tmb-interaction-item"]{
     //border: 1px solid theme("textColor.light");
-    height:325px;
-    border-radius: 22px 22px 22px 0px;
-    position: relative;
-    overflow: hidden;
-    background-color: rebeccapurple;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
     &.tmb-interaction-item-full{
         width: 100%;
     }
     &.tmb-interaction-item-half{
-        width: calc(50% - (var(--gap)/2));
+        width: calc(50% - (var(--gap-h)/2));
+    }
+    .video{
+        border-radius: 22px 22px 0px 0px;
+        position: relative;
+        overflow: hidden;
     }
     .info-bottom{
-        position: absolute;
-        bottom:0;
-        left:0;
-        display: flex;
-        gap:20px;
-        padding:20px;
         width: 100%;
-        align-items: flex-end;
         .grad{
             position: absolute;
             width: 100%;
@@ -185,28 +186,14 @@
         .tag{
             flex-shrink: 0;
             position: relative;
-            padding: 4px 14px;
-            border-radius: 10px 10px 10px 0px;
-            border: 1px solid theme("textColor.light");
+            margin-bottom: 12px;
+            font-weight: bold;
+            text-decoration: underline;
         }
-        .info{
-            position: relative;
-            transform: translate(0, calc(100% + 40px));
-            transition: transform 600ms;
-            p{
-                font-size: .75rem;
-                line-height: 1.4em;;
-            }
+
+        .copy{
+            line-height: 2em;
         }
-    }
-    &:hover{
-        .info-bottom{
-            .grad{
-                transform:translate(0,0);
-            }
-            .info{
-                transform:translate(0,0);
-            }
-        }
+
     }
 }
