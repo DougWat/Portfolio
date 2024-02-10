@@ -1,0 +1,119 @@
+#Page-fvr{
+    --page-text-dark:#111;
+    color:var(--page-text-dark);
+}
+
+#FVRHero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    background: linear-gradient(180deg, rgba(245,229,229,1) 0%, rgba(250,204,204,1) 30%);
+    .head-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap:60px;
+        height: calc(100vh - var(--base-padding-v) - 120px);
+        position: relative;
+        margin-bottom: 120px;
+        h1{
+            font-size: 5rem;
+            margin:12px 0;
+        }
+        &.not-scrolled{
+            .down-arrow{
+                opacity: 0;
+                transform: translate(0px,-40px);
+            }
+        }
+    }
+    .down-arrow{
+        --button-size: 65px;
+        --angle:45deg;
+        position: absolute;
+        width: var(--button-size);
+        height: var(--button-size);
+        border-radius: 100%;
+        flex-shrink: 0;
+        border: 1px solid var(--page-text-dark);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        bottom:-90px;
+        overflow: hidden;
+        cursor: pointer;
+        opacity: 1;
+        transition: transform 700ms, opacity 700ms;
+        .icon{
+            --length:.5;
+            width: 1px;
+            height:1px;
+            background-color: red;
+            position: relative;
+            bottom:calc(var(--button-size) * (var(--length)/2*-1));
+            transition: bottom 300ms;
+        }
+        .line{
+            width: 1px;
+            height: 1px;
+            flex-shrink: 0;
+            position: absolute;
+            display: flex;
+            align-items: flex-end;
+            transition: transform 300ms;
+            &:before{
+                flex-shrink:0;
+                content:"";
+                display: block;
+                width: 1px;
+                height: calc(var(--button-size) * var(--length));
+                background-color: black;
+            }
+            &.line-left{
+                --length:.2;
+                transform: rotate(calc(var(--angle)*-1));
+            }
+            &.line-right{
+                --length:.2;
+                transform: rotate(var(--angle));
+            }
+        }
+        &:hover{
+            --angle:30deg;
+        }
+        &:active{
+            --angle:35deg;
+            .icon{
+                bottom:calc(var(--button-size) * (var(--length)/1.5*-1));
+            }
+        }
+    }
+    .body-container{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        p{
+            @apply h6;
+        }
+    }
+    .video{
+        border-radius: 8px;
+        overflow: hidden;
+    }
+}
+
+.fvr-button{
+    padding: 8px 24px;
+    border: 1px solid var(--page-text-dark);
+    border-radius: 8px;
+    transition: background-color 300ms, color 300ms;
+    cursor: pointer;
+    &:hover{
+        background-color: var(--page-text-dark);
+        color: #fff;
+    }
+}
