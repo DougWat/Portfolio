@@ -19,6 +19,7 @@ module.exports = {
         fontFamily:{
           body: ["Poppins", "sans-serif"],
           header: ["Poppins", "sans-serif"],
+          fvr: ["Libre Caslon Display","Poppins","sans-serif"]
         },
         colors:{
           primary:"#4DE191",

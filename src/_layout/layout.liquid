@@ -6,14 +6,15 @@ title: Doug Watro
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>
-    {%if project.name %}{{project.name}}{% else %}{{title}}{% endif %}
-    </title>
+    <title>{{title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    {% if page.url == "/fvr/"%}
+      <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+    {% endif %}
 
     <link rel="stylesheet" href="{{ '/assets/styles/styles.css' | url }}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

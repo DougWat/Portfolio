@@ -104,13 +104,52 @@
         display: block;
         width: 15px;
         height: 15px;
-        background-color: black;
-        border-radius: 100%;
         flex-shrink: 0;
         flex-grow: 0;
-        opacity: .5;
+        opacity: 1;
+        position: relative;
+        transform: scale(1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &::before{
+            content:"";
+            position: absolute;
+            display: block;
+            width: 15px;
+            height: 15px;
+            border-radius: 100%;
+            border:1px solid white;
+            transition: opacity 300ms, transform 300ms, background-color 300ms;
+            background-color: rgba(255,255,255,0);
+        }
+        &::after{
+            --padding:4px;
+            --offset:calc((var(--padding)/2) * -1);
+            content:"";
+            position: absolute;
+            display: block;
+            width: calc(100% + var(--padding));
+            height: calc(100% + var(--padding));
+            top:var(--offset);
+            left:var(--offset);
+            right:var(--offset);
+            bottom:var(--offset);
+            border-radius: 100%;
+            border:1px solid white;
+            opacity: 0;
+            transform: scale(.7);
+            transition: opacity 300ms, transform 300ms;
+        }
         &.active{
-            opacity: .8;
+            &::after{
+                transform: scale(1);
+                opacity: 1;
+            }
+            &::before{
+                transform: scale(.5);
+                background-color: white;
+            }
         }
     }
 }
