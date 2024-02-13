@@ -3,14 +3,15 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>
-    FORVR
-    </title>
+    <title>FORVR</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+      <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+    
 
     <link rel="stylesheet" href="/Portfolio/assets/styles/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -82,7 +83,7 @@
             <h1 class="brand">FORVR MOOD</h1>
             <p class="post-text italic">( javascript, html, css, postcss, liquid, shopify )</p>
         </div>
-        <a class="fvr-button">
+        <a class="fvr-button" href="https://forvrmood.com/" target="_blank">
             view live site
         </a>
         <a class="down-arrow">
@@ -93,15 +94,79 @@
             </div>
         </a>
     </div>
+    <div class="container-large video">
+        <video muted autoplay loop class="image-cover">
+            <source src="/Portfolio/assets/video/fvr/hero.webm" type="video/webm"/>
+        </video>
+    </div>
     <div class="container-large body-container">
         <p>FORVR MOOD approached me with a design they needed implemented on a preexisting Shopify theme. They were anticipating a product re-launch in the near future and were particularly invested in a complete overhaul of their homepage. The design they had commissioned was highly technical, and would require many points of customization.</p>
         <p>Over the next month I built a development stack using Postcss + Tailwind and Github integration to bolster the development process. I worked directly with company leads to implement, and QA test the redeveloped site, for a successful launch in mid 2023.</p>
         <p>I have been continuing to work with FORVR MOOD to help them fully migrate away from their Shopify template theme, and into an entirely bespoke, custom developed theme.</p>
-    </div> 
-    <div class="container-large video">
-        <video muted autoplay loop class="image-cover">
-            <source src="/Portfolio/assets/video/fvr/hero.webm" type="video/webm">
-        </video>
+    </div>
+</section>
+<section id="FVRHomepage" class="section-padding-large">
+    <div class="container">
+        <h3 class="font-fvr text-center mb-12">A Homepage to Call Home</h3>
+        <p>FORVR came to me with a limited web-budget; they were in the middle of a company wide transformation, and they wanted a website to reflect their re-branding. They had already worked with a designer, and had a full redesign ready to be built. Together, we desided I'd first focus my attention on the homepage. I wanted this homepage to be valuable for the client beyond this first launch, so it was essential that I developed it in such a way to allow FORVR to control every aspect of the product spread for this, and future product launches.</p>
+    </div>
+    <div class="container fvr-content" id="FVRGrad">
+        <div class="copy-block">
+            <h3 class="font-fvr">Dynamic Colors</h3>
+            <p>Color is essential to FORVR's branding, and the client's control over these colors was essential. By changing a single variable in the Shopify customizer everything from the button highlight, to the SVG lines, to the background gradiant is updated seemlessly.</p>
+            <img src="/Portfolio/assets/images/fvr/colorpicker.jpg" class="w-auto" style="border-radius:4px;"/>
+        </div>
+        <div class="image-block">
+            <div class="image-wrapper">
+                <div class="image">
+                    <div class="img grad1"></div>
+                </div>
+            </div>
+            <style> 
+                .grad1{
+                    background-image:url('/Portfolio/assets/images/fvr/grad1.jpg');
+                }
+                .grad2{
+                    background-image:url('/Portfolio/assets/images/fvr/grad2.jpg');
+                }
+            </style>
+            <script>
+                function GradSwitch(){
+                    const el = $("#FVRGrad").find(".img");
+                    let currentClass = "grad1";
+
+                    setInterval(()=>{
+                        if(currentClass == "grad1"){
+                            el.removeClass("grad1").addClass('grad2');
+                            currentClass = "grad2";
+                        }else{
+                            el.removeClass("grad2").addClass('grad1');
+                            currentClass = "grad1";
+                        }
+                    },4000)
+
+                    function SwitchGrad(){
+                        
+                    }
+
+                }
+
+                document.addEventListener("DOMContentLoaded",GradSwitch);
+            </script>
+        </div>
+    </div>
+    <div class="container fvr-content" id="FVRCust">
+        <div class="image-block">
+            <div class="image-wrapper">
+                <div class="image">
+                    <div class="img" style="background-image:url('/Portfolio/assets/images/fvr/cust.jpg')"></div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-block">
+            <h3 class="font-fvr">Fully Customizable</h3>
+            <p>Asside from the colors, each product highlighted on the homepage can be fully customized. The image can be changed, the popup blurb (the floating head) can be removed or link to a video popup, the title, description, and subtext can be overridden, and the product order can be adjusted as needed. This homepage can be effortlessly updated to accomidate future launches, promotionals, and new products.</p>
+        </div>
     </div>
 </section>
     <div class="">
