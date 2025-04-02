@@ -9,14 +9,14 @@
     "clean": "rm -rf _site",
     "build:postcss": "NODE_ENV=production postcss src/styles/styles.css -o dist/assets/styles/styles.css",
     "build:eleventy": "NODE_ENV=production eleventy --pathprefix 'Portfolio'",
-    "dev:postcss": "postcss src/styles/styles.css -o dist/assets/styles/styles.css -w",
+    "dev:postcss": "NODE_ENV=development postcss src/styles/styles.css -o dist/assets/styles/styles.css -w",
     "dev:eleventy": "npx @11ty/eleventy --serve"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@11ty/eleventy": "^3.0.0",
-    "postcss-color-mod-function": "^4.1.1"
+    "@11ty/eleventy": "^1.0.1",
+    "postcss-color-mod-function": "^3.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",

@@ -1,13 +1,8 @@
 <script type="module" >
-//import { EffectComposer } from 'EffectComposer';
-//import { RenderPass } from 'RenderPass';
-//import { GlitchPass } from 'GlitchPass';
-//import { OutputPass } from 'OutputPass';
-//import * as PIXI from 'pixijs';
+
 import * as THREE from 'three';
 import { GLTFLoader } from 'GLTFLoader';
-import {CRTFilter} from 'pixifilterCrt';
-import {PixelateFilter} from 'pixifilterPixelate';
+
 
 let HeroComputer;
 let Screen;
@@ -57,7 +52,6 @@ const _HeroComputer = function(){
 
         renderer.toneMapping = THREE.ReinhardToneMapping;
         renderer.toneMappingExposure = 1;
-        renderer.outputEncoding = THREE.sRGBEncoding;
         renderer.physicallyCorrectLights = true;
         renderer.setSize( 500, 500 );
 
@@ -171,7 +165,7 @@ const _HeroComputer = function(){
 
     function ApplyFaceCanvas(){
         const texture = new THREE.CanvasTexture(Screen.GetView());
-        texture.encoding = THREE.sRGBEncoding;
+        texture.colorSpace = THREE.SRGBColorSpace;
         texture.flipY = false;
         screenMesh.material.map = texture;
 
@@ -182,7 +176,8 @@ const _HeroComputer = function(){
 }
 
 const _Screen = function(){
-    const app = new PIXI.Application({width: 300, height: 300*.84,background: '#1099bb'});
+    console.log("_Screen Start");
+    const app = new PIXI.Application();
     const masterContainer = new PIXI.Container();
     const containers = {};
     
@@ -193,10 +188,15 @@ const _Screen = function(){
     let _face;
     this.Face = ()=>{return _face;}
 
+    let isInitialized = false;
+
     Init();
 
-    function Init(){
-        document.body.appendChild(app.view);
+    async function Init(){
+
+        await app.init({width: 300, height: 300*.84,background: '#1099bb'});
+        document.body.appendChild(app.canvas);
+
         app.stage.addChild(masterContainer);
 
         containers.background = AddContainer(true);
@@ -218,6 +218,7 @@ const _Screen = function(){
         BuildFilters();
         BuildContainers();
 
+        isInitialized = true;
     }
 
     async function BuildFace(){
@@ -281,7 +282,7 @@ const _Screen = function(){
     }
 
     const Mouth = function(_asset,_width){
-        const asset = _asset;
+        const asset = new PIXI.GifSprite(_asset);
         const width = _width;
 
         let defaultPosition = {x:-1000,y:-1000};
@@ -433,7 +434,8 @@ const _Screen = function(){
     }
 
     const Eye = function(_asset, _w,_h, _isRight = true){
-        const asset = _asset;
+        const asset = new PIXI.GifSprite(_asset);
+        console.log(asset);
         const defaultSize = {x:_w,y:_h};
         const isRight = _isRight;
         const yOffset = -100;
@@ -466,9 +468,9 @@ const _Screen = function(){
             fontSize: 200,
             align:'center'
         });
-        const wave = new PIXI.Text("👋",emojiStyle);
-        const thumb = new PIXI.Text("👍",emojiStyle);
-        const cross = new PIXI.Text("❌",emojiStyle);
+        const wave = new PIXI.Text({text:"👋",emojiStyle});
+        const thumb = new PIXI.Text({text:"👍",emojiStyle});
+        const cross = new PIXI.Text({text:"❌",emojiStyle});
         SetEmojiState(wave);
         SetEmojiState(thumb);
         SetEmojiState(cross);
@@ -487,9 +489,9 @@ const _Screen = function(){
     }
 
     function BuildFilters(){
-        crtFilter = new CRTFilter();
+        crtFilter = new PIXI.filters.CRTFilter();
         noiseFilter = new PIXI.NoiseFilter();
-        pixelateFilter = new PixelateFilter();
+        pixelateFilter = new PIXI.filters.PixelateFilter();
 
         crtFilter.lineContrast = .3;
         crtFilter.lineWidth = 2
@@ -508,16 +510,11 @@ const _Screen = function(){
         app.stage.filters = [crtFilter, pixelateFilter];
 
         const graphics_background = new PIXI.Graphics();
-        graphics_background.beginFill(0x664799);
-        graphics_background.drawRect(0, 0, app.view.width, app.view.height);
-        graphics_background.endFill();
+        graphics_background.rect(0, 0, app.canvas.width, app.canvas.height).fill(0x664799);
         containers.background.addChild(graphics_background);
 
         const graphics_static = new PIXI.Graphics();
-        graphics_static.beginFill(0x999999);
-        graphics_static.drawRect(0, 0, app.view.width, app.view.height);
-        graphics_static.endFill();
-
+        graphics_static.rect(0, 0, app.canvas.width, app.canvas.height).fill(0x999999);
         containers.static.addChild(graphics_static);
         containers.static.filters = [noiseFilter];
     }
@@ -538,11 +535,16 @@ const _Screen = function(){
     }
 
     this.GetView = function(){
-        return app.view;
+        if(isInitialized){
+            return app.canvas;
+        }
+        return null;
     }
 
     this.Render = function(pos){
-        _face.Render(pos);
+        if( _face != undefined){
+            _face.Render(pos);
+        }
     }
 
 }

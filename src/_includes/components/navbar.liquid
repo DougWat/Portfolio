@@ -3,8 +3,27 @@
         <a class="brand">
             
         </a>
-        <a class="resume">
-            Resume
-        </a>
+        <div class="menu-wrapper">
+            <a class="menu">
+                <div class="burg">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </a>
+            <a class="sub resume">
+
+            </a>
+            <a class="sub contact">
+
+            </a>
+        </div>
     </div> 
 </nav>  
+
+<script>
+    const burg = document.querySelector('.menu-wrapper');
+    burg.addEventListener('click',()=>{
+        burg.classList.toggle('active');
+    })
+</script>
